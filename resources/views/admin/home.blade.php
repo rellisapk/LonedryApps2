@@ -11,7 +11,7 @@
                             Tabel User
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body text-center">
                             <table class="table table-bordered table-hover text-center">
                                 <thead>
@@ -104,10 +104,46 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Tabel Order
+                            Tabel Shop
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body text-center">
+                            <table class="table table-bordered table-hover text-center">
+                                <thead class="table-warning">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nama Barang</th>
+                                        <th>Stok</th>
+                                        <th>Harga</th>
+                                        <th>Deskripsi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($shop as $shop)
+                                    <tr>
+                                        <th>{{$shop->id}}</th>
+                                        <th>{{$shop->name}}</th>
+                                        <th>{{$shop->stock}}</th>
+                                        <th>{{$shop->price}}</th>
+                                        <th>{{$shop->description}}</th>
+                                        <th><a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">Delete</a></th>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <a href="/home/admin/addShop" class="btn btn-primary">Tambah Items</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Tabel Order
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                         <div class="accordion-body text-center">
                             <table class="table table-bordered table-primary table-hover text-center">
                                 <thead class="table-primary">
