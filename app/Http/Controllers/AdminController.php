@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\Treatments;
+use App\Models\Shop;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -33,8 +34,9 @@ class AdminController extends Controller
                     ->join('treatments','treatments.id','=','orders.treatment_id')
                     ->select('orders.*', 'users.name as u_name','treatments.name as t_name')
                     ->get();
+        $shop = Shop::all();
         $treatments = Treatments::all();
-        return view('admin.home', ['user' => $user,'orders'=>$orders,'treatments'=>$treatments]);
+        return view('admin.home', ['user' => $user,'orders'=>$orders,'treatments'=>$treatments,'shop'=>$shop]);
     }
 
     public function addUsers()
@@ -108,6 +110,48 @@ class AdminController extends Controller
     public function deleteTreatments($id)
     {
     DB::table('treatments')->where('id',$id)->delete();
+    return redirect('/home/admin');
+    }
+
+    public function addShop()
+    {
+        return view("admin.addShop");
+
+    }
+
+    public function storeShop(Request $request)
+    {
+        $shop = new Shop;
+        $shop->name = $request->name;
+        $shop->stock = $request->stock;
+        $shop->price = $request->price;
+        $shop->description = $request->description;
+        $shop->save();
+
+        return redirect()->to('home/admin');
+    }
+
+    public function editShop($id)
+    {
+
+        $shop = DB::table('shop')->where('id',$id)->get();
+        return view('admin.editShop',['shop'=>$shop]);
+
+    }
+    public function updateShop(Request $request)
+    {
+        Shop::where('id',$request->id)->update([
+            'name' => $request->name,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'description' => $request->description,
+        ]);
+        return redirect()->to('home/admin');
+    }
+
+    public function deleteShop($id)
+    {
+    DB::table('shop')->where('id',$id)->delete();
     return redirect('/home/admin');
     }
 

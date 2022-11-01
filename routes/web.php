@@ -35,6 +35,12 @@ Route::get('/home/admin/editOrder/{id}', [App\Http\Controllers\AdminController::
 Route::put('/home/admin/updateOrder', [App\Http\Controllers\AdminController::class, 'updateOrder'])->middleware('isAdmin');
 Route::get('/home/admin/deleteOrder/{id}', [App\Http\Controllers\AdminController::class, 'deleteOrder'])->middleware('isAdmin');
 
+Route::get('/home/admin/addShop', [App\Http\Controllers\AdminController::class, 'addShop'])->middleware('isAdmin');
+Route::post('/home/admin/storeShop', [App\Http\Controllers\AdminController::class, 'storeShop'])->middleware('isAdmin');
+Route::get('/home/admin/editShop/{id}', [App\Http\Controllers\AdminController::class, 'editShop'])->middleware('isAdmin');
+Route::put('/home/admin/updateShop', [App\Http\Controllers\AdminController::class, 'updateShop'])->middleware('isAdmin');
+Route::get('/home/admin/deleteShop/{id}', [App\Http\Controllers\AdminController::class, 'deleteShop'])->middleware('isAdmin');
+
 Route::get('/home/admin/addTreatments', [App\Http\Controllers\AdminController::class, 'addTreatments'])->middleware('isAdmin');
 Route::post('/home/admin/storeTreatments', [App\Http\Controllers\AdminController::class, 'storeTreatments'])->middleware('isAdmin');
 Route::get('/home/admin/editTreatments/{id}', [App\Http\Controllers\AdminController::class, 'editTreatments'])->middleware('isAdmin');
