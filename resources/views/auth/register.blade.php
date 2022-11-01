@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@section('css')
+body {
+    background: url(https://images.unsplash.com/photo-1576109135919-aa9bf1e6a975?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -78,7 +88,7 @@
 
                         <div class="row my-3">
                             <div class="col">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-main">
                                     {{ __('Lanjut') }}
                                 </button>
 
