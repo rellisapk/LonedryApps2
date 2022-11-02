@@ -24,6 +24,7 @@ Route::get('/about', [App\Http\Controllers\HomeController::class, 'about']);
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact']);
 Route::get('/services', [App\Http\Controllers\ServiceController::class, 'services'])->name('services');
 Route::get('/store', [App\Http\Controllers\ServiceController::class, 'store'])->name('store');
+Route::get('/store/pesan', [App\Http\Controllers\ServiceController::class, 'pesan'])->name('pesan');
 Route::get('/home/admin', [App\Http\Controllers\AdminController::class, 'getData'])->name('admin.route')->middleware('isAdmin');
 
 Route::post('/home/admin/makeAdmin/{id}', [App\Http\Controllers\AdminController::class, 'makeAdmin'])->name('completedUpdate');

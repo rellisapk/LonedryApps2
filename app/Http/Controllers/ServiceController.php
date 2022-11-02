@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Shop;
 
 use Illuminate\Http\Request;
 
@@ -18,6 +19,11 @@ class ServiceController extends Controller
     }
     public function store()
     {
-        return view('store.home');
+        $shop = Shop::all();
+        return view('store.home', ['shop'=>$shop]);
+    }
+    public function pesan()
+    {
+        return view('store.pesan');
     }
 }
