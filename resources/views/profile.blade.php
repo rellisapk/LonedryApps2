@@ -49,7 +49,7 @@
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input value="{{ $user->password }}" name="password" id="password" type="password" class="form-control" placeholder="Masukkan password">
+                            <input value="" name="password" id="password" type="password" class="form-control" placeholder="Masukkan password">
                             <p class="text-danger">{{ $errors->first("password") }}</p>
                         </div>
 

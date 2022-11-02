@@ -30,8 +30,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-        body{
+        body, html {
+            height: 100%;
+        }
+        body {
             background-color: #F0F0F0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -44,14 +48,38 @@
             color: inherit;
             transition: inherit;
         }
-        @media all and (min-width: 992px) {
+        .nav {
+            font-size: 18px;
+            transition: color .15s;
+        }
+        .nav:hover {
+            color: #F2E03F;
+        }
+        ul > li {
+            margin-left: 5px;
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        .footer {
+            margin-top: auto;
+        }
+        .btn-main {
+            color: #fff;
+            background-color: #C08497;
+            border-color: #C08497;
+        }
+        .btn-second {
+            color: #fff;
+            background-color: #235789;
+            border-color: #235789;
+        }
+        @yield('css');
+    @media all and (min-width: 992px) {
             .navbar .nav-item .dropdown-menu{ display: none; }
             .navbar .nav-item:hover .nav-link{   }
             .navbar .nav-item:hover .dropdown-menu{ display: block; }
             .navbar .nav-item .dropdown-menu{ margin-top:0; }
         }
-        @yiegitld('css');
-        @yield('css');
     </style>
 </head>
 <body>
