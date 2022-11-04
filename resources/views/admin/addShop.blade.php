@@ -23,6 +23,11 @@
         </div>
 
         <div class="form-group">
+          <label for="image">Image</label>
+          <input type="file" name="image" value="" class="form-control">
+        </div>
+
+        <div class="form-group">
           <label for="description">Deskripsi Produk</label>
           <input type="text" name="description" value="" class="form-control">
         </div>

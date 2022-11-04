@@ -121,14 +121,28 @@ class AdminController extends Controller
 
     public function storeShop(Request $request)
     {
-        $shop = new Shop;
-        $shop->name = $request->name;
-        $shop->stock = $request->stock;
-        $shop->price = $request->price;
-        $shop->description = $request->description;
-        $shop->save();
-
-        return redirect()->to('home/admin');
+        $request->validate([
+            'name' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'required',
+        ]);
+  
+        $imageName = time() . '.' . $request->file->extension();
+        $request->file->storeAs('/images/product', $imageName);
+    
+        Shop::create([
+            'name' => $request->name,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'image' => $imageName,
+            'description' => $request->description,
+        ]);
+        // dd($shop);
+     
+        return redirect()->to('/home/admin')
+                        ->with('success','Product created successfully.');
     }
 
     public function editShop($id)
@@ -138,15 +152,30 @@ class AdminController extends Controller
         return view('admin.editShop',['shop'=>$shop]);
 
     }
-    public function updateShop(Request $request)
+    public function updateShop(Request $request, Shop $store)
     {
-        Shop::where('id',$request->id)->update([
-            'name' => $request->name,
-            'stock' => $request->stock,
-            'price' => $request->price,
-            'description' => $request->description,
+        $request->validate([
+            'name' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'required',
         ]);
-        return redirect()->to('home/admin');
+  
+        $shop = $request->all();
+  
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+        $store->update($shop);
+     
+        return redirect()->route('admin.route')
+                        ->with('success','Product created successfully.');
     }
 
     public function deleteShop($id)

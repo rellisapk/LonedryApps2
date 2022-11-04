@@ -34,7 +34,7 @@
             height: 100%;
         }
         body {
-            background-color: #F0F0F0;
+            background-color: #F2FDFF;
             min-height: 100vh;
             display: flex;
             flex-direction: column;

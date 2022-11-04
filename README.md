@@ -28,7 +28,7 @@ Aplikasi Lonedry juga dilengkapi bagian dashboard admin untuk memanagement laund
 
 1. Clone Project
     ```sh 
-        git clone https://github.com/rellisapk/Lonedry
+        git clone https://github.com/rellisapk/LonedryApps2
     ```
 2. Install Composer on Project Directories
     ```sh 
@@ -53,12 +53,13 @@ Aplikasi Lonedry juga dilengkapi bagian dashboard admin untuk memanagement laund
 
 ## Credits
 
-| NPM           | Name        |
-| ------------- |-------------|
-| 140810190015  | Salsabila Karin |
-| 140810190017  | Saddam Habibi Utomo |
-| 140810190029  | Rellisa Puspa Kusuma |
-| 140810190049  | Anastasia Victoria Yuarsa |
+| NPM           | Name        | Role    |
+| ------------- |-------------|---------|
+| 140810190015  | Salsabila Karin | Back End Developer |
+| 140810190017  | Saddam Habibi Utomo | Project Manager |
+| 140810190027  | Zahra Claura Hermawan | UI/UX Designer |
+| 140810190029  | Rellisa Puspa Kusuma | Back End Developer |
+| 140810190049  | Anastasia Victoria Yuarsa | Front End Developer |
 
 ## License
 

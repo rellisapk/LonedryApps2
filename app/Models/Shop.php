@@ -14,6 +14,7 @@ class Shop extends Model
         'name',
         'stock',
         'price',
+        'image',
         'description'
     ];
 }

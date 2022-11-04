@@ -12,7 +12,44 @@
 }
 @endsection
 @section('content')
-<div class="container">
+
+<div class="container my-3">
+	<div class="container card border-dark text-center">
+		<h1 class="fw-bold my-5">Our Packages</h1>
+		<div class="d-grid mb-5 gap-3">
+			<div class="container card bg-primary border-1 w-75" style="--bs-bg-opacity: .5;">
+				<div class="row justify-content-around">
+					<div class="col-sm-2 justify-content-center">
+						<img src="{{ asset('images/service/1.png') }}" alt="">
+					</div>
+					<div class="col">
+						<p class="h3">Cuci + Setrika</p>
+						<p>Rp 8.000,- / Kg</p>
+						<p>3 Days</p>
+					</div>
+				</div>
+			</div>
+			<div class="container card border-1 w-75">
+				test
+			</div>
+		</div>
+		<div class="btn-toolbar justify-content-center mt-3" role="toolbar" aria-label="Toolbar with button groups">
+			<div class="btn-group me-2" role="group" aria-label="First group">
+				<nav>
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="container">
     <div class="row">
         <div class="col">
             <h1><a href="/home"><span class="fas fa-arrow-alt-circle-left"></span></a> Apa yang bisa kita bantu?</h1>
@@ -43,7 +80,7 @@
 
     @else
 
-    <div class="row justify-content-around">
+	<div class="row justify-content-around">
         <div class="col-lg-3 col-8 p-3">
           <div class="service-wrap mx-auto">
         <a href="{{url ('login') }}"><img class="service-img" src="{{ asset('images/service/cuci_setrika.jpg') }}" alt="Cuci Setrika" style="height: 100%;left: -65px;">
@@ -77,5 +114,5 @@
         </div>
     </div>
 
-</div>
+</div> -->
 @endsection
