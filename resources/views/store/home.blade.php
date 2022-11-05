@@ -13,7 +13,6 @@
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <div class="mx-5 mb-5">
-<<<<<<< HEAD
             @foreach($shops as $shop)
             <div class="card-group shop_data">
                 <div class="card">
@@ -21,14 +20,6 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$shop->name}}</h5>
                         <h5 class="card-title">Harga: {{$shop->price}}</h5>
-=======
-            <div class="card-group">
-            @foreach($shops as $shop)
-                <div class="card">
-                    <img src="{{ Storage::url('public/images/product').$shop->image }}" class="card-img-top align-items-center" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $shop->name }}</h5>
->>>>>>> be0f351dc6be3202fdbcfb379b06872092bf3ab7
                     </div>
                     <div class="card-footer">
                         <div class="btn-group col-4" role="group" aria-label="Basic example">
