@@ -56,8 +56,23 @@
             var shop_id = $(this).closest('.shop_data').find('.shop_id').val();
             var shop_qty = $(this).closest('.shop_data').find('.input-qty').val();
 
-            alert(shop_id);
-            alert(shop_qty);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "/add-to-cart",
+                data: {
+                    'shop_id': shop_id,
+                    'quantity': shop_qty,
+                },
+                success: function (response){
+                    alert(response.status);
+                }
+            });
         });
 
         $('.increment-btn').click(function (e){

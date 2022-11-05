@@ -202,3 +202,4 @@
         }
     });
 </script>
+@yield('scripts')
