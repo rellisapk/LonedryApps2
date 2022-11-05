@@ -128,19 +128,23 @@ class AdminController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required',
         ]);
-  
-        $imageName = time() . '.' . $request->file->extension();
-        $request->file->storeAs('/images/product', $imageName);
-    
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/product';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+
         Shop::create([
             'name' => $request->name,
             'stock' => $request->stock,
             'price' => $request->price,
-            'image' => $imageName,
+            'image' => $profileImage,
             'description' => $request->description,
         ]);
         // dd($shop);
-     
+
         return redirect()->to('/home/admin')
                         ->with('success','Product created successfully.');
     }
@@ -161,9 +165,9 @@ class AdminController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required',
         ]);
-  
+
         $shop = $request->all();
-  
+
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -173,7 +177,7 @@ class AdminController extends Controller
             unset($input['image']);
         }
         $store->update($shop);
-     
+
         return redirect()->route('admin.route')
                         ->with('success','Product created successfully.');
     }
