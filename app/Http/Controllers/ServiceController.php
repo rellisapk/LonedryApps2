@@ -16,8 +16,4 @@ class ServiceController extends Controller
     {
         return view('order.riwayat');
     }
-    public function store()
-    {
-        return view('store.home');
-    }
 }

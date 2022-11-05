@@ -128,7 +128,7 @@
                                         <th>{{$shop->name}}</th>
                                         <th>{{$shop->stock}}</th>
                                         <th>{{$shop->price}}</th>
-                                        <th>{{$shop->image}}</th>
+                                        <th><img src="{{url('storage/images/product/{$shop->image}')}}" alt=""></th>
                                         <th>{{$shop->description}}</th>
                                         <th><a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">Delete</a></th>
                                     </tr>

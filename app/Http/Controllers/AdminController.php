@@ -9,6 +9,7 @@ use App\Models\Orders;
 use App\Models\Treatments;
 use App\Models\Shop;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 
 class AdminController extends Controller
@@ -129,20 +130,24 @@ class AdminController extends Controller
             'description' => 'required',
         ]);
   
-        $imageName = time() . '.' . $request->file->extension();
-        $request->file->storeAs('/images/product', $imageName);
-    
-        Shop::create([
+        $image = $request->file('image');
+        $image->storeAs('public/images/product', $image->hashName());
+
+        $shop = Shop::create([
             'name' => $request->name,
             'stock' => $request->stock,
             'price' => $request->price,
-            'image' => $imageName,
+            'image' => $image->hashName(),
             'description' => $request->description,
         ]);
         // dd($shop);
-     
-        return redirect()->to('/home/admin')
-                        ->with('success','Product created successfully.');
+        if($shop){
+            //redirect dengan pesan sukses
+            return redirect()->to('/home/admin')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else{
+            //redirect dengan pesan error
+            return redirect()->to('/home/admin')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     public function editShop($id)

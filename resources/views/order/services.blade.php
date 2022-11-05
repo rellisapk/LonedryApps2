@@ -29,8 +29,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="container card border-1 w-75">
-				test
+			<div class="container card bg-info border-1 w-75" style="--bs-bg-opacity: .5;">
+				<div class="row justify-content-around">
+					<div class="col-sm-2 justify-content-center">
+						<img src="{{ asset('images/service/1.png') }}" alt="">
+					</div>
+					<div class="col">
+						<p class="h3">Cuci + Setrika</p>
+						<p>Rp 8.000,- / Kg</p>
+						<p>3 Days</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="btn-toolbar justify-content-center mt-3" role="toolbar" aria-label="Toolbar with button groups">

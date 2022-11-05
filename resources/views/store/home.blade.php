@@ -14,10 +14,11 @@
         </form>
         <div class="mx-5 mb-5">
             <div class="card-group">
+            @foreach($shops as $shop)
                 <div class="card">
-                    <img src="..." class="card-img-top align-items-center" alt="...">
+                    <img src="{{ Storage::url('public/images/product').$shop->image }}" class="card-img-top align-items-center" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Barang 1</h5>
+                        <h5 class="card-title">{{ $shop->name }}</h5>
                     </div>
                     <div class="card-footer">
                         <div class="btn-group col-4" role="group" aria-label="Basic example">
@@ -28,7 +29,8 @@
                         <button class="btn btn-secondary float-end" type="submit">Add to Cart</button>   
                     </div>
                 </div>
-                <div class="card">
+                @endforeach
+                <!-- <div class="card">
                     <img src="..." class="card-img-top align-items-center" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Barang 2</h5>
@@ -56,7 +58,7 @@
                         <button class="btn btn-secondary float-end" type="submit">Add to Cart</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="btn-toolbar justify-content-center mt-3" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group me-2" role="group" aria-label="First group">
                     <nav>
