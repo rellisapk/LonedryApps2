@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-
-@endsection
-
 @section('content')
 
 <div class="container my-3">
@@ -24,17 +20,17 @@
                     <div class="card-footer">
                         <div class="btn-group col-4" role="group" aria-label="Basic example">
                             @if ($shop->stock > 0)
-                            <div class="input-group text-center mb-3">
+                            <form action="/addToCart/{{$shop->id}}" method="post">
+                                @csrf
                                 <button class="input-group-text decrement-btn">-</button>
-                                <input class="form-control col-sm-5 input-qty" type="text" value="1">
+                                <input class="form-control col-sm-5 input-qty" type="text" name="quantity" value="1">
                                 <button class="input-group-text increment-btn">+</button>
-                            </div>
+                                <button class="btn btn-secondary float-end addToCartBtn" type="submit">Add to Cart</button>
+                            </form>
                             @else
                             <label for="out">Out of stock</label>
                             @endif
                         </div>
-                        <input type="hidden" value="{{ $shop->id }}" class="shop_id">
-                        <button class="btn btn-secondary float-end addToCartBtn" type="submit">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -42,7 +38,6 @@
             <div class="text-center mt-2">
                 <button class="btn btn-dark"><a href="">Check My Shopping Cart</a></button>
             </div>
-            {{$shops->links() }}
         </div>
     </div>
 </div>
@@ -50,30 +45,32 @@
 @section('scripts')
 <script>
     $(document).ready(function (e){
-        $('.addToCartBtn').click(function (e){
-            e.preventDefault();
 
-            var shop_id = $(this).closest('.shop_data').find('.shop_id').val();
-            var shop_qty = $(this).closest('.shop_data').find('.input-qty').val();
+        // $('.addToCartBtn').click(function (e){
+        //     e.preventDefault();
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+        //     var shop_id = $(this).closest('.shop_data').find('.shop_id').val();
+        //     var shop_qty = $(this).closest('.shop_data').find('.input-qty').val();
 
-            $.ajax({
-                method: "POST",
-                url: "/add-to-cart",
-                data: {
-                    'shop_id': shop_id,
-                    'quantity': shop_qty,
-                },
-                success: function (response){
-                    alert(response.status);
-                }
-            });
-        });
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
+
+        //     $.ajax({
+        //         method: "POST",
+        //         url: "/add-to-cart",
+        //         data: {
+        //             'shop_id': shop_id,
+        //             'quantity': shop_qty,
+        //         },
+        //         alert(data);
+        //         success: function (response){
+        //             alert(response.status);
+        //         }
+        //     });
+        // });
 
         $('.increment-btn').click(function (e){
             e.preventDefault();

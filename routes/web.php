@@ -18,9 +18,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::middleware(['auth'])->group(function(){
-    Route::post('add-to-cart',[App\Http\Controllers\StoreController::class,'addToCart']);
-});
+Route::post('/addToCart/{id}',[App\Http\Controllers\StoreController::class,'addToCart']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about']);
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact']);

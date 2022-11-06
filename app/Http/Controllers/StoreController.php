@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Cart;
+use App\Models\OrderDetails;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,31 +17,25 @@ class StoreController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function addToCart(Request $request){
+    public function addToCart(Request $request, $id){
+        $shop = Shop::where('id', $id)->first();
+        $cart = new Cart;
+        $cart->user_id = Auth::user()->id;
+        $cart->jumlah_harga = $shop->price * $request->quantity;
+        $cart->status = 0;
+        $cart->save();
 
-        $shop_id = $request->input('shop_id');
-        $shop_qty = $request->input('shop_qty');
+        $order_new = Cart::where('user_id', Auth::user()->id)
+        ->where('status',0)->first();
 
-        if(Auth::check()){
+        $order_detail = new OrderDetails;
+        $order_detail->barang_id = $shop->id;
+        $order_detail->cart_id = $order_new->id;
+        $order_detail->jumlah = $request->quantity;
+        $order_detail->jumlah_harga = $shop->price * $request->quantity;
+        $order_detail->save();
 
-            $shop_check = Shop::where('id', $shop_id)->first();
-
-            if($shop_check){
-                if(Cart::where('shop_id', $shop_id)->where('user_id', Auth::id())->exists()){
-
-                    return response()->json(['status' => "Already Added"]);
-                }
-                else{
-                $cartItem = new Cart();
-                $cartItem->shop_id = $shop_id;
-                $cartItem->user_id = Auth::id();
-                $cartItem->quantity = $shop_qty;
-                $cartItem->save();
-                return response()->json(['status' => $shop_check->name. "Added to cart"]);
-                }
-            }
-        }else{
-            return response()->json(['status' => "Login to Continue"]);
-        }
+        return redirect()->to('/store')
+                        ->with('success','Added to Cart.');
     }
 }
