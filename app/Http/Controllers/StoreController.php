@@ -30,6 +30,7 @@ class StoreController extends Controller
 
         $order_detail = new OrderDetails;
         $order_detail->barang_id = $shop->id;
+        $order_detail->user_id = Auth::user()->id;
         $order_detail->cart_id = $order_new->id;
         $order_detail->jumlah = $request->quantity;
         $order_detail->jumlah_harga = $shop->price * $request->quantity;
@@ -38,4 +39,26 @@ class StoreController extends Controller
         return redirect()->to('/store')
                         ->with('success','Added to Cart.');
     }
+
+    public function checkout($id)
+    {
+        $checkout = DB::table('order_details')
+                    ->join('cart','cart.id','=','order_details.id')
+                    ->join('shop','shop.id','=','order_details.barang_id')
+                    ->select('order_details.*','cart.id as cart_id','shop.name','shop.price')
+                    ->where('order_details.user_id', $id)
+                    ->get();
+        return view('store.checkout',['checkout'=>$checkout]);
+
+    }
+
+    public function deleteItem($id)
+    {
+    $user = Auth::user()->id;
+    DB::table('order_details')
+    ->where('id',$id)->delete();
+    return redirect('/checkout/'.$user);
+    }
+
+    
 }
