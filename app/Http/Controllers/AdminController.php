@@ -10,10 +10,16 @@ use App\Models\Treatments;
 use App\Models\Shop;
 use App\Models\Ordershop;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function getData()
     {
         // $response = Http::get('http://localhost:8000/api/treatment/index');
@@ -126,14 +132,32 @@ class AdminController extends Controller
 
     public function storeShop(Request $request)
     {
-        $shop = new Shop;
-        $shop->name = $request->name;
-        $shop->stock = $request->stock;
-        $shop->price = $request->price;
-        $shop->description = $request->description;
-        $shop->save();
+        $request->validate([
+            'name' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'required',
+        ]);
 
-        return redirect()->to('home/admin');
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/product';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+
+        Shop::create([
+            'name' => $request->name,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'image' => $profileImage,
+            'description' => $request->description,
+        ]);
+        // dd($shop);
+
+        return redirect()->to('/home/admin')
+                        ->with('success','Product created successfully.');
     }
 
     public function editShop($id)
@@ -143,15 +167,30 @@ class AdminController extends Controller
         return view('admin.editShop',['shop'=>$shop]);
 
     }
-    public function updateShop(Request $request)
+    public function updateShop(Request $request, Shop $store)
     {
-        Shop::where('id',$request->id)->update([
-            'name' => $request->name,
-            'stock' => $request->stock,
-            'price' => $request->price,
-            'description' => $request->description,
+        $request->validate([
+            'name' => 'required',
+            'stock' => 'required',
+            'price' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'required',
         ]);
-        return redirect()->to('home/admin');
+
+        $shop = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/product';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+        $store->update($shop);
+
+        return redirect()->route('admin.route')
+                        ->with('success','Product created successfully.');
     }
 
     public function deleteShop($id)

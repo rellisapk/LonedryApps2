@@ -14,6 +14,12 @@ class Shop extends Model
         'name',
         'stock',
         'price',
+        'image',
         'description'
     ];
+
+    public function order_detail()
+	{
+	     return $this->hasMany('App\Models\OrderDetails','barang_id', 'id');
+	}
 }

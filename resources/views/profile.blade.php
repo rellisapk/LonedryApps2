@@ -1,12 +1,23 @@
 @extends('layouts.app')
 
+@section('css')
+.not-selected:hover {
+    text-decoration: underline;
+}
+@endsection
+
 @section('content')
-<div class="container">
+
+<div class="container mx-auto my-5">
     <div class="row">
         <div class="col-8 mx-auto">
+            <h3>Profile {{ $user->name }}</h3>
             <div class="card">
                 <div class="card-header">
-                    <h3 class="my-auto">Edit Profile {{ $user->name }}</h3>
+                    <div class="row">
+                        <div class="col-6"><b>Biodata Diri</b></div>
+                        <div class="col-6 not-selected"><a href="/riwayat/{{Auth::user()->id}}"><b>Riwayat Pesanan</b></a></div>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -14,7 +25,7 @@
                     @csrf
                     @method("PUT")
 
-                        <div class="form-group">
+                    <div class="form-group">
                             <label for="name">Name</label>
                             <input value="{{ $user->name }}" name="name" id="name" type="text" class="form-control" placeholder="Masukkan nama">
                             <p class="text-danger">{{ $errors->first("name") }}</p>
@@ -49,7 +60,7 @@
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input value="{{ $user->password }}" name="password" id="password" type="password" class="form-control" placeholder="Masukkan password">
+                            <input value="" name="password" id="password" type="password" class="form-control" placeholder="Masukkan password">
                             <p class="text-danger">{{ $errors->first("password") }}</p>
                         </div>
 
@@ -66,6 +77,7 @@
         </div>
     </div>
 </div>
+
 <!--
 <div class="container">
     <div class="card">
@@ -137,3 +149,4 @@
     </div>
 </div> -->
 @endsection
+

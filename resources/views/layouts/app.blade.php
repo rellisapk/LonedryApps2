@@ -12,17 +12,6 @@
 
     <title>Lonedry</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://kit.fontawesome.com/c3c1353c4c.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
@@ -30,8 +19,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-        body{
-            background-color: #F0F0F0;
+        body, html {
+            height: 100%;
+        }
+        body {
+            background-color: #F2FDFF;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -60,19 +52,28 @@
         .footer {
             margin-top: auto;
         }
+        .btn-main {
+            color: #fff;
+            background-color: #C08497;
+            border-color: #C08497;
+        }
+        .btn-second {
+            color: #fff;
+            background-color: #235789;
+            border-color: #235789;
+        }
+        @yield('css');
     @media all and (min-width: 992px) {
             .navbar .nav-item .dropdown-menu{ display: none; }
             .navbar .nav-item:hover .nav-link{   }
             .navbar .nav-item:hover .dropdown-menu{ display: block; }
             .navbar .nav-item .dropdown-menu{ margin-top:0; }
         }
-    @yiegitld('css');
-    @yield('css');
     </style>
 </head>
 <body>
     <!-- START NAVIGATION BAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <div class="container container-fluid">
             <!-- Logo -->
             <a href="/">
@@ -85,24 +86,16 @@
                 <!-- Navbar Kiri -->
                 <ul class="navbar-nav me-auto text-center px-5 h5">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown" href="{{ url('services') }}" id="navbarDropdown">
-                            Services
-                        <a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ url('services') }}">Cuci + Setrika</a></li>
-                            <li><a class="dropdown-item" href="{{ url('services') }}">Setrika</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ url('services') }}">Riwayat Transaksi</a></li>
-                        </ul>
+                        <a class="nav-link active fw-semibold" href="{{ url('services') }}">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/contact') }}">Contact</a>
+                        <a class="nav-link active fw-semibold" href="{{ url('store') }}" id="navbarDropdown">Store<a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/about') }}">About</a>
+                        <a class="nav-link active fw-semibold" href="{{ url('/contact') }}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-semibold" href="{{ url('/about') }}">About</a>
                     </li>
                 </ul>
 
@@ -110,8 +103,8 @@
                 @guest
                 <!-- Kalau belum log in -->
                 @if (Route::has('login'))
-                <div class="btn btn-primary">
-                    <a class="nav" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <div class="btn float-end rounded" style="background-color: #C08497;">
+                    <a href="{{ route('login') }}" class="h5 text-white">{{ __('Log in') }}</a>
                 </div>
                 @endif
 
@@ -121,7 +114,7 @@
                     <ul class="navbar-nav me-auto text-center px-5 h5">
                         <li class="nav-item dropdown">
                             <a class="nav" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" type="button">
-                                {{ Auth::user()->name }}<i class="fa fa-user-circle mx-2" style="font-size: 25px;"></i>
+                                {{ Auth::user()->name }}<i class="fa-solid fa-user ml-3 fa-lg"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                 @if(Auth::user()->is_Admin == 0)
@@ -147,60 +140,41 @@
             </div>
         </div>
     </nav>
-    <main class="py-4">
+    <main>
         @yield('content')
     </main>
 
     <!-- START FOOTER -->
     <footer class="footer text-center text-lg-start bg-light">
-        <div class="container text-md-start mt-5">
-            <div class="row mt-3">
-                <!-- Logo -->
-                <div class="col-8 mx-auto mb-4">
-                    <img src="{{ asset('images/lonedry_black.png') }}" alt="Lonedry" width=200>
-                </div>
-                <!-- Kolom kanan 1 -->
-                <div class="col-2 mx-auto mb-4">
-                    <p class="h6 text-uppercase fw-bold mb-4">
-                        <a class="nav">Help & Support</a>
-                    </p>
-                    <p class="h6 mb-4">
-                        <a href="{{ url('services') }}" class="nav">Cara Penggunaan</a>
-                    </p>
-                    </div>
-                    <!-- Kolom kanan 2 -->
-                    <div class="col-2 mx-auto mb-4">
-                    <p class="h6 text-uppercase fw-bold mb-4">
-                        <a class="nav">About Us</a>
-                    </p>
-                    <p>
-                        <a href="{{ url('/about') }}" class="nav">Tentang Kami</a>
-                    </p>
-                    <p>
-                        <a href="{{ url('/contact') }}" class="nav">Kontak Kami</a>
-                    </p>
-                </div>
-                <!-- Footer bawah -->
-                <section class="container d-flex justify-content-center justify-content-lg-between p-4 border-bottom text-dark">
-                    <!-- Copyright -->
-                    <div class="me-5 d-none d-lg-block">
-                        <span>Hak Cipta © 2022 Lonedry</span>
-                    </div>
-                    <!-- Social media -->
-                    <div>
-                        <span class="me-4">Follow us on</span>
-                        <a href="#" class="me-4">
-                        <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="me-4">
-                        <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </section>
+        <div class="container-fluid text-center">
+            <div class="my-3">
+                <a href="#" class="me-4">
+                <i class="fa-brands fa-twitter fa-2x"></i>
+                </a>
+                <a href="#" class="me-4">
+                <i class="fa-brands fa-instagram fa-2x"></i>
+                </a>
             </div>
+            <!-- Footer bawah -->
+            <section class="border-top text-dark">
+                <!-- Copyright -->
+                    <span class="fs-5">Hak Cipta © 2022 Lonedry</span>
+            </section>
         </div>
     </footer>
     <!-- END FOOTER -->
+    <!-- Scripts -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@include('sweet::alert')
+<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="https://kit.fontawesome.com/c3c1353c4c.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
 
@@ -229,3 +203,4 @@
         }
     });
 </script>
+@yield('scripts')

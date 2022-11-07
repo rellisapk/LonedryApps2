@@ -18,13 +18,25 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::post('/addToCart/{id}',[App\Http\Controllers\StoreController::class,'addToCart']);
+// Route::get('/checkout/{user}',[App\Http\Controllers\StoreController::class,'checkout']);
+// Route::get('/deleteItem/{id}', [App\Http\Controllers\StoreController::class, 'deleteItem']);
+Route::get('check-out', [App\Http\Controllers\StoreController::class, 'checkout']);
+Route::delete('check-out/{id}', [App\Http\Controllers\StoreController::class, 'deleteItem']);
+Route::get('konfirmasi-check-out',  [App\Http\Controllers\StoreController::class, 'konfirmasi']);
+Route::get('history', [App\Http\Controllers\HistoryController::class, 'index']);
+Route::get('history/{id}', [App\Http\Controllers\HistoryController::class, 'detail']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about']);
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact']);
 Route::get('/services', [App\Http\Controllers\ServiceController::class, 'services'])->name('services');
+<<<<<<< HEAD
 Route::get('/store', [App\Http\Controllers\ServiceController::class, 'store'])->name('store');
 Route::get('/store/pesan', [App\Http\Controllers\ServiceController::class, 'pesan'])->name('pesan');
+=======
+Route::get('/store', [App\Http\Controllers\StoreController::class, 'index'])->name('store');
+>>>>>>> 70b2960688e08110a3183f8e34a5ccd8960ae8be
 Route::get('/home/admin', [App\Http\Controllers\AdminController::class, 'getData'])->name('admin.route')->middleware('isAdmin');
 
 Route::post('/home/admin/makeAdmin/{id}', [App\Http\Controllers\AdminController::class, 'makeAdmin'])->name('completedUpdate');
