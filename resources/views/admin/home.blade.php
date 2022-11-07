@@ -128,11 +128,7 @@
                                         <th>{{$shop->name}}</th>
                                         <th>{{$shop->stock}}</th>
                                         <th>{{$shop->price}}</th>
-<<<<<<< HEAD
-                                        <th><img src="/images/product/{{ $shop->image }}" width="100px"></th>
-=======
-                                        <th><img src="{{url('storage/images/product/{$shop->image}')}}" alt=""></th>
->>>>>>> be0f351dc6be3202fdbcfb379b06872092bf3ab7
+                                        <th><img src="/images/{{$shop->image}}" alt="" width="150px" height="150px"></th>
                                         <th>{{$shop->description}}</th>
                                         <th><a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">Delete</a></th>
                                     </tr>

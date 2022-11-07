@@ -4,9 +4,9 @@
   <div class="row">
     <div class="col-8 mx-auto">
       <h1>Edit Item</h1>
-      <form action="/home/admin/updateShop" method="POST">
+      <form action="/home/admin/updateShop" method="POST" enctype="multipart/form-data">
       @csrf
-      {{ method_field('PUT') }}
+      @method('PUT')
 
         @foreach($shop as $s)
         <input type="hidden" name="id" value="{{$s->id}}">
@@ -29,6 +29,11 @@
         <div class="form-group">
           <label for="description">Deskripsi</label>
           <input type="text" name="description" value="{{ $s->description }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="image">Foto Produk</label>
+          <input type="file" name="image" value="{{ $s->image }}" class="form-control" placeholder="foto">
         </div>
 
         <div class="row">
