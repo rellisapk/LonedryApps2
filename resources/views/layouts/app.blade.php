@@ -164,6 +164,8 @@
     </footer>
     <!-- END FOOTER -->
     <!-- Scripts -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@include('sweet::alert')
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="https://kit.fontawesome.com/c3c1353c4c.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

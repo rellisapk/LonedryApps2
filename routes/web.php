@@ -19,8 +19,13 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::post('/addToCart/{id}',[App\Http\Controllers\StoreController::class,'addToCart']);
-Route::get('/checkout/{user}',[App\Http\Controllers\StoreController::class,'checkout']);
-Route::get('/deleteItem/{id}', [App\Http\Controllers\StoreController::class, 'deleteItem']);
+// Route::get('/checkout/{user}',[App\Http\Controllers\StoreController::class,'checkout']);
+// Route::get('/deleteItem/{id}', [App\Http\Controllers\StoreController::class, 'deleteItem']);
+Route::get('check-out', [App\Http\Controllers\StoreController::class, 'checkout']);
+Route::delete('check-out/{id}', [App\Http\Controllers\StoreController::class, 'deleteItem']);
+Route::get('konfirmasi-check-out',  [App\Http\Controllers\StoreController::class, 'konfirmasi']);
+Route::get('history', [App\Http\Controllers\HistoryController::class, 'index']);
+Route::get('history/{id}', [App\Http\Controllers\HistoryController::class, 'detail']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about']);

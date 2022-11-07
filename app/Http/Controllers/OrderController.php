@@ -11,6 +11,11 @@ use PDF;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index($id)
     {
         $treatments = Treatments::all();
@@ -48,7 +53,7 @@ class OrderController extends Controller
         $orders = DB::table('orders')
                     ->join('users','users.id','=','orders.user_id')
                     ->join('treatments','treatments.id','=','orders.treatment_id')
-                    ->select('orders.*', 'users.name as u_name','treatments.name as t_name')
+                    ->select('orders.*', 'users.name as u_name','users.id','treatments.name as t_name')
                     ->where('orders.user_id', $id)
                     ->get();
         return view('order.riwayat',['orders'=>$orders]);

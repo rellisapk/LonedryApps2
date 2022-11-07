@@ -13,4 +13,14 @@ class Cart extends Model
         'user_id',
         'jumlah_harga',
     ];
+
+    public function user()
+	{
+	      return $this->belongsTo('App\Models\User','user_id', 'id');
+	}
+
+	public function order_detail()
+	{
+	     return $this->hasMany('App\Models\OrderDetails','cart_id', 'id');
+	}
 }

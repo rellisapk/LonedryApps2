@@ -36,7 +36,7 @@
             </div>
             @endforeach
             <div class="text-center mt-2">
-                <button class="btn btn-dark"><a href="/checkout/{{Auth::user()->id}}">Check My Shopping Cart</a></button>
+                <button class="btn btn-dark"><a href="check-out">Check My Shopping Cart</a></button>
             </div>
         </div>
     </div>

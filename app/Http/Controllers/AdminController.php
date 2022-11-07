@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Http;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function getData()
     {
         // $response = Http::get('http://localhost:8000/api/treatment/index');

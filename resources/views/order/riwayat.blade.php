@@ -4,6 +4,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+            <div class="row">
+                <div class="col-6 not-selected" ><a href="/profile/edit/{{Auth::user()->id}}"><b>Biodata Diri</b></a></div>
+                <div class="col-6"><b>Riwayat Pesanan</b></a></div>
+            </div>
                 <center><div class="card-header"><h3>Riwayat Pemesanan</h3></div><center>
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-responsive-xl">
