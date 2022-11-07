@@ -1,14 +1,24 @@
 @extends('layouts.app')
+
+@section('css')
+.not-selected:hover {
+    text-decoration: underline;
+}
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<div class="container mx-auto my-5">
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <h3>Profile {{Auth::user()->name}}</h3>
             <div class="card">
-            <div class="row">
-                <div class="col-6 not-selected" ><a href="/profile/edit/{{Auth::user()->id}}"><b>Biodata Diri</b></a></div>
-                <div class="col-6"><b>Riwayat Pesanan</b></a></div>
-            </div>
-                <center><div class="card-header"><h3>Riwayat Pemesanan</h3></div><center>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-6 not-selected" ><a href="/profile/edit/{{Auth::user()->id}}"><b>Biodata Diri</b></a></div>
+                        <div class="col-6"><b>Riwayat Pesanan</b></div>
+                    </div>
+                </div>
+
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-responsive-xl">
                         <thead class="thead-dark">
