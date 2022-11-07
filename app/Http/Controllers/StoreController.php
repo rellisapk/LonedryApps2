@@ -139,11 +139,12 @@ class StoreController extends Controller
         $cart->update();
 
         $order_details = OrderDetails::where('cart_id', $cart_id)->get();
-        foreach ($order_details as $order_detail) {
-            $shop = Shop::where('id', $order_detail->shop_id)->first();
-            $shop->stock = $shop->stock - $order_detail->jumlah;
-            $shop->update();
-        }
+        // dd($shop->stock);
+        // foreach ($order_details as $order_detail) {
+        //     $shop = Shop::where('id', $order_detail->shop_id)->first();
+        //     $shop->stock = $shop->stock - $order_detail->jumlah;
+        //     $shop->update();
+        // }
 
 
 
