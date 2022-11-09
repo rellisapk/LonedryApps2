@@ -7,6 +7,8 @@
             <h3><i class="fa-solid fa-clipboard-list mx-3"></i>Database</h3>
 
             <div class="accordion" id="accordionExample">
+
+                <!-- TABEL USER -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -16,32 +18,34 @@
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body text-center">
                             <table class="table table-bordered table-hover text-center">
-                                <thead>
+                                <thead class="table-warning">
                                     <tr>
                                         <th>ID</th>
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>No. HP</th>
                                         <th>Role</th>
-                                        <th>Action</th>
+                                        <th class="col-md-4">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($user as $u)
                                     <tr>
-                                        <th>{{$u->id}}</th>
-                                        <th>{{$u->name}}</th>
-                                        <th>{{$u->address}}</th>
-                                        <th>{{$u->phone}}</th>
+                                        <td>{{$u->id}}</td>
+                                        <td>{{$u->name}}</td>
+                                        <td>{{$u->address}}</td>
+                                        <td>{{$u->phone}}</td>
                                         @if($u->is_Admin == 1)
-                                        <th>Admin</th>
+                                        <td>Admin</td>
                                         @else
-                                        <th>User</th>
+                                        <td>User</td>
                                         @endif
-                                        <th class="col-md-4">
+                                        <td>
                                             <div class="row justify-content-center">
                                                 <div class="col-sm-auto">
-                                                    <a href="/home/admin/deleteUsers/{{$u->id}}" class="btn btn-danger">Delete</a>
+                                                    <a href="/home/admin/deleteUsers/{{$u->id}}" class="btn btn-danger">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
                                                 </div>
                                                 <div class="col-sm-auto">
                                                     <form action="/home/admin/makeAdmin/{{$u->id}}" method="POST">
@@ -58,7 +62,7 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                        </th>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -68,10 +72,11 @@
                     </div>
                 </div>
 
+                <!-- TABEL SERVICE PRODUCT -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Tabel Treatments
+                            Tabel Service Product
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -89,11 +94,18 @@
                                 <tbody>
                                 @foreach($treatments as $treatments)
                                     <tr>
-                                        <th>{{$treatments->id}}</th>
-                                        <th>{{$treatments->name}}</th>
-                                        <th>{{$treatments->price}}</th>
-                                        <th>{{$treatments->duration}}</th>
-                                        <th><a href="/home/admin/editTreatments/{{$treatments->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteTreatments/{{$treatments->id}}" class="btn btn-danger">Delete</a></th>
+                                        <td>{{$treatments->id}}</td>
+                                        <td>{{$treatments->name}}</td>
+                                        <td>{{$treatments->price}}</td>
+                                        <td>{{$treatments->duration}}</td>
+                                        <td style="width: 100px;">
+                                            <a href="/home/admin/editTreatments/{{$treatments->id}}" class="btn btn-success">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <a href="/home/admin/deleteTreatments/{{$treatments->id}}" class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -102,14 +114,60 @@
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- TABEL SERVICE ORDER -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
+                    <h2 class="accordion-header" id="headingFour">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Tabel Shop
+                            Tabel Service Order
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body text-center">
+                            <table class="table table-bordered table-hover text-center">
+                                <thead class="table-warning">
+                                    <tr>
+                                        <th>ID Order</th>
+                                        <th>Berat</th>
+                                        <th>Total</th>
+                                        <th>Deskripsi</th>
+                                        <th>Jenis Treatment</th>
+                                        <th>Nama</th>
+                                        <th>Status</th>
+                                        <th style="width: 50px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($orders as $o)
+                                    <tr>
+                                        <td>{{$o->id}}</td>
+                                        <td>{{$o->berat}}</td>
+                                        <td>{{$o->total}}</td>
+                                        <td>{{$o->deskripsi}}</td>
+                                        <td>{{$o->t_name}}</td>
+                                        <td>{{$o->u_name}}</td>
+                                        <td>{{$o->status}}</td>
+                                        <td>
+                                            <a href="/home/admin/editOrder/{{$o->id}}" class="btn btn-success">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABEL E-COMMERCE PRODUCT -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Tabel E-Commerce Product
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                         <div class="accordion-body text-center">
                             <table class="table table-bordered table-hover text-center">
                                 <thead class="table-warning">
@@ -120,21 +178,26 @@
                                         <th>Harga</th>
                                         <th>Image</th>
                                         <th>Deskripsi</th>
-                                        <th>Action</th>
+                                        <th style="width: 100px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($shop as $shop)
                                     <tr>
-                                        <th>{{$shop->id}}</th>
-                                        <th>{{$shop->name}}</th>
-                                        <th>{{$shop->stock}}</th>
-                                        <th>{{$shop->price}}</th>
-                                        <th><img src="/images/product/{{ $shop->image }}" width="100px"></th>
-                                        <th>{{$shop->description}}</th>
-                                        <th><a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">Edit</a>
-                                        <hr>
-                                        <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">Delete</a></th>
+                                        <td>{{$shop->id}}</td>
+                                        <td>{{$shop->name}}</td>
+                                        <td>{{$shop->stock}}</td>
+                                        <td>{{$shop->price}}</td>
+                                        <td><img src="/images/product/{{ $shop->image }}" width="100px"></td>
+                                        <td>{{$shop->description}}</td>
+                                        <td>
+                                            <a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -143,45 +206,48 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- TABEL E-COMMERCE ORDER -->
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Tabel Order
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Tabel E-Commerce Order
                         </button>
                     </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                         <div class="accordion-body text-center">
-                            <table class="table table-bordered table-primary table-hover text-center">
-                                <thead class="table-primary">
+                            <table class="table table-bordered table-hover text-center">
+                                <thead class="table-warning">
                                     <tr>
                                         <th>ID Order</th>
-                                        <th>Berat</th>
-                                        <th>Total</th>
-                                        <th>Deskripsi</th>
-                                        <th>Jenis Treatment</th>
                                         <th>Nama</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Nama Barang</th>
+                                        <th>Jumlah</th>
+                                        <th>Total</th>
+                                        <th style="width: 50px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($orders as $o)
-                                <tr>
-                                    <th>{{$o->id}}</th>
-                                    <th>{{$o->berat}}</th>
-                                    <th>{{$o->total}}</th>
-                                    <th>{{$o->deskripsi}}</th>
-                                    <th>{{$o->t_name}}</th>
-                                    <th>{{$o->u_name}}</th>
-                                    <th>{{$o->status}}</th>
-                                    <th><a href="/home/admin/editOrder/{{$o->id}}" class="btn btn-success">Edit</a></th>
-                                </tr>
-                                @endforeach
+                                <!-- foreach -->
+                                    <tr>
+                                        <td>id order</td>
+                                        <td>nama pembeli</td>
+                                        <td>nama barang</td>
+                                        <td>jumlah</td>
+                                        <td>total</td>
+                                        <td>
+                                            <a href="/" class="btn btn-success">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <!-- endforeach -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
