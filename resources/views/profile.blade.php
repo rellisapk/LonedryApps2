@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('css')
+.not-selected {
+    color: #8e8e8e;
+}
 .not-selected:hover {
     text-decoration: underline;
 }
@@ -11,6 +14,8 @@
 <div class="container mx-auto my-5">
     <div class="row">
         <div class="col-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
             <h3>Profile {{ $user->name }}</h3>
             <div class="card">
                 <div class="card-header">
@@ -21,6 +26,11 @@
                 </div>
 
                 <div class="card-body">
+                    <b>Profil Saya</b>
+                    <p>Kelola informasi profil Anda untuk mengontrol, melindungi dan mengamankan akun</p>
+                    <hr>
+                    <b>Ubah Biodata Diri</b>
+                    <br>
                     <form action="{{ route('profile.update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
@@ -73,6 +83,8 @@
                         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                     </form>
                 </div>
+            </div>
+            </div>
             </div>
         </div>
     </div>
