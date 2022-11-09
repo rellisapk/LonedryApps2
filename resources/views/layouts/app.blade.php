@@ -114,7 +114,7 @@
                     <ul class="navbar-nav me-auto text-center px-5 h5">
                         <li class="nav-item dropdown">
                             <a class="nav" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" type="button">
-                                {{ Auth::user()->name }}<i class="fa-solid fa-user ml-3 fa-lg"></i>
+                                {{ Auth::user()->name }}<i class="fa fa-user-circle mx-2" style="font-size: 25px;" aria-hidden="true"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                 @if(Auth::user()->is_Admin == 0)
