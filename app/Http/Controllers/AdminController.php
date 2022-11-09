@@ -172,19 +172,28 @@ class AdminController extends Controller
             'description' => 'required',
         ]);
 
-        $shop = $request->all();
-
         if ($image = $request->file('image')) {
             $destinationPath = 'images/product';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
+            Shop::update([
+                'name' => $request->name,
+                'stock' => $request->stock,
+                'price' => $request->price,
+                'image' => $profileImage,
+                'description' => $request->description,
+            ]);
         }else{
             unset($input['image']);
+            Shop::update([
+                'name' => $request->name,
+                'stock' => $request->stock,
+                'price' => $request->price,
+                'description' => $request->description,
+            ]);
         }
-        $store->update($shop);
-
-        return redirect()->route('admin.route')
+        return redirect()->to('/home/admin')
                         ->with('success','Product created successfully.');
     }
 
