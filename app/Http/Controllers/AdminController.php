@@ -139,7 +139,7 @@ class AdminController extends Controller
             $destinationPath = 'images/product';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
+            $input['image'] = $profileImage;
         }
 
         Shop::create([

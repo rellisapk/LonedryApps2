@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -41,9 +42,9 @@ class HomeController extends Controller
 
         return view("profile", compact("user"));
     }
-    public function updateProfile(Request $request, $id) {
+    public function updateProfile(Request $request) {
 
-        $user = User::where('id', $id)->first();
+        $user = User::where('id', Auth::user()->id)->first();
 
             if ($user->password != $request->password) {
                 $user->update([

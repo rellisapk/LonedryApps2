@@ -1,9 +1,11 @@
 @extends('layouts.app')
+
 @section('content')
-<div class="container">
+<div class="container my-5">
     <div class="card">
-        <div class="card-header text-center h1">Database</div>
         <div class="card-body">
+            <h3><i class="fa-solid fa-clipboard-list mx-3"></i>Database</h3>
+
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
@@ -26,40 +28,38 @@
                                 </thead>
                                 <tbody>
                                 @foreach($user as $u)
-                                <tr>
-                                    <th>{{$u->id}}</th>
-                                    <th>{{$u->name}}</th>
-                                    <th>{{$u->address}}</th>
-                                    <th>{{$u->phone}}</th>
-                                    @if($u->is_Admin == 1 )
-                                    <th>Admin</th>
-                                    @else
-                                    <th>User</th>
-                                    @endif
-                                    <th class="col-md-4">
-                                        <div class="row justify-content-center">
-                                            <div class="col-sm-auto">
-                                                <a href="/home/admin/deleteUsers/{{$u->id}}" class="btn btn-danger">Delete</a>
+                                    <tr>
+                                        <th>{{$u->id}}</th>
+                                        <th>{{$u->name}}</th>
+                                        <th>{{$u->address}}</th>
+                                        <th>{{$u->phone}}</th>
+                                        @if($u->is_Admin == 1)
+                                        <th>Admin</th>
+                                        @else
+                                        <th>User</th>
+                                        @endif
+                                        <th class="col-md-4">
+                                            <div class="row justify-content-center">
+                                                <div class="col-sm-auto">
+                                                    <a href="/home/admin/deleteUsers/{{$u->id}}" class="btn btn-danger">Delete</a>
+                                                </div>
+                                                <div class="col-sm-auto">
+                                                    <form action="/home/admin/makeAdmin/{{$u->id}}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="isAdmin" value=1>
+                                                        <button type="submit" class="btn btn-success">Jadikan admin</button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-sm-auto">
+                                                    <form action="/home/admin/makeAdmin/{{$u->id}}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="isAdmin" value=0>
+                                                        <button type="submit" class="btn btn-danger">Hapus admin</button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-auto">
-                                                <form action="/home/admin/makeAdmin/{{$u->id}}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    <!-- <input type="hidden" name="id" value=""> -->
-                                                    <input type="hidden" name="isAdmin" value=1>
-                                                    <button type="submit" class="btn btn-success">Jadikan admin</button>
-                                                </form>
-                                            </div>
-{{$u->id}}                                            <div class="col-sm-auto">
-                                                <form action="/home/admin/makeAdmin/{{$u->id}}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    <!-- <input type="hidden" name="id" value=""> -->
-                                                    <input type="hidden" name="isAdmin" value=0>
-                                                    <button type="submit" class="btn btn-danger">Hapus admin</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </th>
-                                <tr>
+                                        </th>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
@@ -67,6 +67,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -101,6 +102,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -130,7 +132,9 @@
                                         <th>{{$shop->price}}</th>
                                         <th><img src="/images/product/{{ $shop->image }}" width="100px"></th>
                                         <th>{{$shop->description}}</th>
-                                        <th><a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">Delete</a></th>
+                                        <th><a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">Edit</a>
+                                        <hr>
+                                        <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">Delete</a></th>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -173,7 +177,6 @@
                                     <th><a href="/home/admin/editOrder/{{$o->id}}" class="btn btn-success">Edit</a></th>
                                 </tr>
                                 @endforeach
-                                    <!-- Masukin syntax sql disini -->
                                 </tbody>
                             </table>
                         </div>
