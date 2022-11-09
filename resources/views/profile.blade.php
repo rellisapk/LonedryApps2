@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('profile.update', $user->id ) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('profile.update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
 
