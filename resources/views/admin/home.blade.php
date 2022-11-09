@@ -182,7 +182,7 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingFive">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Tabel Order Shop
+                            Tabel Order Store
                         </button>
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
@@ -193,7 +193,6 @@
                                         <th>ID Order</th>
                                         <th>Nama</th>
                                         <th>Alamat</th>
-                                        <th>Pemesanan</th>
                                         <th>Total</th>
                                         <th>Tanggal Pemesanan</th>
                                         <th>Bukti</th>
@@ -207,12 +206,11 @@
                                     <th>{{$os->id}}</th>
                                     <th>{{$os->name}}</th>
                                     <th>{{$os->address}}</th>
-                                    <th>{{$os->name}}</th>
-                                    <th>{{$os->total}}</th>
+                                    <th>Rp {{number_format($os->total)}}</th>
                                     <th>{{$os->created_at}}</th>
-                                    <th>{{$os->bukti}}</th>
+                                    <th><img src="/images/{{$os->bukti}}" alt="" width="150px" height="150px"></th>
                                     <th>{{$os->status}}</th>
-                                    <th><a href="/home/admin/editOrdershop/{{$os->id}}" class="btn btn-success">Edit</a></th>
+                                    <th><a href="/home/admin/editOrdershop/{{$os->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteOrdershop/{{$os->id}}" class="btn btn-danger">Delete</a></th>
                                 </tr>
                                 @endforeach
                                     <!-- Masukin syntax sql disini -->

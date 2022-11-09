@@ -26,6 +26,8 @@ Route::delete('check-out/{id}', [App\Http\Controllers\StoreController::class, 'd
 Route::get('konfirmasi-check-out',  [App\Http\Controllers\StoreController::class, 'konfirmasi']);
 Route::get('history', [App\Http\Controllers\HistoryController::class, 'index']);
 Route::get('history/{id}', [App\Http\Controllers\HistoryController::class, 'detail']);
+Route::post('/storeBuktistore', [App\Http\Controllers\HistoryController::class, 'storeBuktistore']);
+Route::put('/updateBuktistore', [App\Http\Controllers\HistoryController::class, 'updateBuktistore']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about']);
@@ -58,6 +60,10 @@ Route::put('/home/admin/updateTreatments', [App\Http\Controllers\AdminController
 Route::get('/home/admin/deleteTreatments/{id}', [App\Http\Controllers\AdminController::class, 'deleteTreatments'])->middleware('isAdmin');
 Route::get('/order/{user}', [App\Http\Controllers\OrderController::class, 'index'])->name('order');
 Route::get('/riwayat/{user}', [App\Http\Controllers\OrderController::class, 'riwayat'])->name('riwayat');
+
+Route::get('/home/admin/editOrdershop/{id}', [App\Http\Controllers\AdminController::class, 'editOrdershop'])->middleware('isAdmin');
+Route::put('/home/admin/updateOrdershop', [App\Http\Controllers\AdminController::class, 'updateOrdershop'])->middleware('isAdmin');
+Route::get('/home/admin/deleteOrdershop/{id}', [App\Http\Controllers\AdminController::class, 'deleteOrdershop'])->middleware('isAdmin');
 
 Route::get('/profile/edit/{user}', [App\Http\Controllers\HomeController::class, 'editProfile'])->name('profile.edit');
 Route::put('/profile/update/{user}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('profile.update');

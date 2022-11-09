@@ -8,7 +8,7 @@
       @csrf
       {{ method_field('PUT') }}
 
-        @foreach($ordershop as $os)
+        @foreach($order_shop as $os)
         <input type="hidden" name="id" value="{{$os->id}}">
 
         <div class="form-group">
@@ -21,8 +21,8 @@
         </div>
 
         <div class="form-group">
-            <label for="bukti">Bukti Pembayaran</label>
-            <textarea name="bukti" rows="5"  class="form-control">{{ $os->bukti}}</textarea>
+            <label for="bukti">Bukti Pembayaran</label><br>
+            <img src="/images/{{$os->bukti}}" alt="" width="150px" height="150px">
         </div>
 
         <div class="form-group">

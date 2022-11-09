@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Ordershop extends Model
 {
     use HasFactory;
-    protected $table = 'shop';
+    protected $table = 'order_shop';
 
     protected $fillable = [
         'user_id',
         'pemesanan',
         'total',
-        'bukti'
+        'bukti',
+        'id_detail',
     ];
 
     public function user()

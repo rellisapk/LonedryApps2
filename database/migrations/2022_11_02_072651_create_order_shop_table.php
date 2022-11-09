@@ -16,12 +16,12 @@ class CreateOrderShopTable extends Migration
         Schema::create('order_shop', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
-            $table->string('pemesanan');
             $table->integer('total');
-            $table->string('status');
+            $table->string('status')->nullable();
+            $table->string('bukti')->nullable();
+            $table->string('id_detail')->nullable();
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE order_shop ADD bukti MEDIUMBLOB null");
     }
 
     /**

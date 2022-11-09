@@ -45,7 +45,7 @@ class AdminController extends Controller
         $treatments = Treatments::all();
         $ordershop = DB::table('order_shop')
                     ->join('users','users.id','=','order_shop.user_id')
-                    ->select('order_shop.*', 'users.*')
+                    ->select('order_shop.*', 'users.name as name', 'users.address as address')
                     ->get();
         return view('admin.home', ['user' => $user,'orders'=>$orders,'treatments'=>$treatments,'shop'=>$shop, 'ordershop'=>$ordershop]);
     }
