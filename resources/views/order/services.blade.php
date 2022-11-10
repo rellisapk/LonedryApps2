@@ -13,7 +13,7 @@
 @endsection
 @section('content')
 
-<div class="container my-3">
+<div class="container my-5">
 	<div class="container card border-dark text-center">
 		<h1 class="fw-bold my-5">Our Packages</h1>
 		<div class="d-grid mb-5 gap-3">
