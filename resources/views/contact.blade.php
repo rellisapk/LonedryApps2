@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container my-5">
     <div class="card">
         <div class="card-header text-center h2">Kontak Kami</div>
         <div class="card-body">
