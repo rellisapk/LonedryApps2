@@ -142,7 +142,7 @@ class AdminController extends Controller
 
         if ($request->hasfile('image')) {
             $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('image')->getClientOriginalName());
-            $request->file('image')->move(public_path('images'), $filename);
+            $request->file('image')->move(public_path('images/product'), $filename);
         }
 
         Shop::create([
@@ -180,7 +180,7 @@ class AdminController extends Controller
 
         if ($request->hasfile('image')) {
             $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('image')->getClientOriginalName());
-            $request->file('image')->move(public_path('images'), $filename);
+            $request->file('image')->move(public_path('images/product'), $filename);
         }
 
         if($request->hasfile('image')){

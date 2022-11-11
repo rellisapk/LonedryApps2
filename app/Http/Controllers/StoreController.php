@@ -24,6 +24,15 @@ class StoreController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function search(Request $request){
+		$search = $request->search;
+        $shops = DB::table('shop')
+        ->where('name','like',"%".$search."%")
+        ->paginate(10);
+
+            // mengirim data shop ke view index
+        return view('store.home',['shops' => $shops]);
+    }
     public function addToCart(Request $request, $id){
         $shop = Shop::where('id', $id)->first();
 

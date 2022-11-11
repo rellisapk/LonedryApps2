@@ -16,7 +16,6 @@
 					<div class="card-body">
 						<p class="card-text h3"><i class="fa-solid fa-money-bill"></i> Harga : {{$treatments->price}}</p>
 						<p class="card-text h3"><i class="fa-sharp fa-solid fa-clock"></i> Durasi : {{$treatments->duration}}</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
 					</div>
 				</div>
 				@else
@@ -25,11 +24,11 @@
 					<div class="card-body">
 						<p class="card-text h3">{{$treatments->price}} : Harga <i class="fa-solid fa-money-bill"></i></p>
 						<p class="card-text h3">{{$treatments->duration}} : Durasi <i class="fa-sharp fa-solid fa-clock"></i></p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
 					</div>
 				</div>
 				@endif
 				@endforeach
+                <a href="/order/{user}" class="btn btn-primary">Go somewhere</a>
 			</div>
 		</div>
 	</div>

@@ -39,13 +39,13 @@ class HistoryController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if ($request->hasfile('image')) {            
+        if ($request->hasfile('image')) {
             $filename = round(microtime(true) * 1).'-'.str_replace(' ','-',$request->file('image')->getClientOriginalName());
-            $request->file('image')->move(public_path('images'), $filename);
+            $request->file('image')->move(public_path('images/bukti_pembayaran'), $filename);
         }
 
         Ordershop::create([
-            
+
             'user_id'=>Auth::user()->id,
             'bukti' => $filename,
             "id_detail"=> $request->id_detail,
@@ -58,10 +58,10 @@ class HistoryController extends Controller
     public function updateBuktistore(Request $request)
     {
 
-                   
-        if ($request->hasfile('image')) {            
+
+        if ($request->hasfile('image')) {
             $filename = round(microtime(true) * 1).'-'.str_replace(' ','-',$request->file('image')->getClientOriginalName());
-            $request->file('image')->move(public_path('images'), $filename);
+            $request->file('image')->move(public_path('images/bukti_pembayaran'), $filename);
         }
 
         if($request->hasfile('image')){
@@ -75,6 +75,6 @@ class HistoryController extends Controller
             ]);
         }
         return redirect()->back();
-             
+
     }
 }

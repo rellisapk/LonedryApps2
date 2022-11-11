@@ -19,12 +19,12 @@
 
         <div class="form-group">
           <label for="nama lengkap">Nama</label>
-          <input type="text" name="nama lengkap" value="{{ $user->name }}" class="form-control" readonly>
+          <input type="text" name="nama lengkap" value="{{ $users->name }}" class="form-control" readonly>
         </div>
 
         <div class="form-group">
           <label for="address">Alamat</label>
-          <textarea name="address" rows="5" class="form-control" readonly><?php echo $user['address']; ?></textarea>
+          <textarea name="address" rows="5" class="form-control" readonly><?php echo $users->address; ?></textarea>
         </div>
 
         <div class="form-group">

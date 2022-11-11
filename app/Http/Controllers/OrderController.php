@@ -7,6 +7,7 @@ use App\Models\Treatments;
 use App\Models\User;
 use App\Models\Orders;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class OrderController extends Controller
@@ -16,11 +17,11 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($id)
+    public function index()
     {
         $treatments = Treatments::all();
-        $user = User::where('id', $id)->first();
-        return view('order.order', compact('user', 'treatments'));
+        $users = User::where('id', Auth::user()->id)->first();
+        return view('order.order', compact('users', 'treatments'));
     }
 
     public function store(Request $request)

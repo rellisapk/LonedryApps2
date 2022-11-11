@@ -36,6 +36,7 @@ Route::get('/services', [App\Http\Controllers\ServiceController::class, 'service
 Route::get('/store', [App\Http\Controllers\ServiceController::class, 'store'])->name('store');
 Route::get('/store/pesan', [App\Http\Controllers\ServiceController::class, 'pesan'])->name('pesan');
 Route::get('/store', [App\Http\Controllers\StoreController::class, 'index'])->name('store');
+Route::get('/store/search', [App\Http\Controllers\StoreController::class, 'search'])->name('store.search');
 Route::get('/home/admin', [App\Http\Controllers\AdminController::class, 'getData'])->name('admin.route')->middleware('isAdmin');
 
 Route::post('/home/admin/makeAdmin/{id}', [App\Http\Controllers\AdminController::class, 'makeAdmin'])->name('completedUpdate');

@@ -6,15 +6,15 @@
 @section('content')
 <div class="container my-3">
     <div class="container card">
-        <form class="d-flex m-5" role="search">
-            <input class="form-control me-2" type="search" placeholder="What are you looking for..." aria-label="Search">
+        <form class="d-flex m-5" role="search" action="/store/search" method="GET">
+            <input name="search" class="form-control me-2" type="search" placeholder="What are you looking for..." aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <div class="mx-5 mb-5">
             <div class="card-group">
                 @foreach($shops as $shop)
                 <div class="card">
-                <img src="/images/{{ $shop->image }}" width="20%">
+                <img src="/images/product/ {{ $shop->image }}" width="20%">
                     <div class="card-body">
                         <h3 class="card-title">{{$shop->name}}</h3>
                         <h5 class="card-text">Harga : {{$shop->price}}</h5>
@@ -44,9 +44,7 @@
         </div>
     </div>
 </div>
-
-            @endforeach
-            <div class="text-center mt-2">
+            <div class="text-center mt-2" style="margin-bottom: 10px;">
                 <button class="btn btn-dark"><a href="check-out">Check My Shopping Cart</a></button>
             </div>
         </div>
