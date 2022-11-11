@@ -1,15 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
- <div class="accordion-body text-center">
- <div class="col-md-12">
+<div class="container my-3 text-center">
     <div class="card">
         <div class="card-body">
             <h3><i class="fa fa-shopping-cart"></i> Check Out</h3>
             @if(!empty($cart))
             <p align="right">Tanggal Pesan : {{ $cart->created_at }}</p>
             <table class="table table-striped">
-                <thead>
+                <thead class="table-success">
                     <tr>
                         <th>No</th>
                         <th>Gambar</th>
@@ -53,7 +52,7 @@
                 </tbody>
             </table>
             @endif
-        </div>
+        </div>  
     </div>
 </div>
 @endsection

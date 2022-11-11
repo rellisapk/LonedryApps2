@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script src="https://kit.fontawesome.com/c3c1353c4c.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -63,7 +64,7 @@
             border-color: #235789;
         }
         @yield('css');
-    @media all and (min-width: 992px) {
+        @media all and (min-width: 992px) {
             .navbar .nav-item .dropdown-menu{ display: none; }
             .navbar .nav-item:hover .nav-link{   }
             .navbar .nav-item:hover .dropdown-menu{ display: block; }

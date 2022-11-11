@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Orders;
 use App\Models\Treatments;
 use App\Models\Shop;
+use App\Models\Ordershop;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
@@ -42,7 +43,11 @@ class AdminController extends Controller
                     ->get();
         $shop = Shop::all();
         $treatments = Treatments::all();
-        return view('admin.home', ['user' => $user,'orders'=>$orders,'treatments'=>$treatments,'shop'=>$shop]);
+        $ordershop = DB::table('order_shop')
+                    ->join('users','users.id','=','order_shop.user_id')
+                    ->select('order_shop.*', 'users.name as name', 'users.address as address')
+                    ->get();
+        return view('admin.home', ['user' => $user,'orders'=>$orders,'treatments'=>$treatments,'shop'=>$shop, 'ordershop'=>$ordershop]);
     }
 
     public function addUsers()
@@ -151,8 +156,7 @@ class AdminController extends Controller
         ]);
         // dd($shop);
 
-        return redirect()->to('/home/admin')
-                        ->with('success','Product created successfully.');
+        return redirect()->to('/home/admin');
     }
 
     public function editShop($id)
@@ -162,15 +166,8 @@ class AdminController extends Controller
         return view('admin.editShop',['shop'=>$shop]);
 
     }
-    public function updateShop(Request $request, Shop $store)
+    public function updateShop(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'stock' => 'required',
-            'price' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'description' => 'required',
-        ]);
 
         if ($image = $request->file('image')) {
             $destinationPath = 'images/product';
@@ -197,6 +194,7 @@ class AdminController extends Controller
                         ->with('success','Product created successfully.');
     }
 
+    
     public function deleteShop($id)
     {
     DB::table('shop')->where('id',$id)->delete();
@@ -229,6 +227,30 @@ class AdminController extends Controller
     public function deleteOrder($id)
     {
     DB::table('orders')->where('id',$id)->delete();
+    return redirect('/home/admin');
+    }
+
+    public function editOrdershop($id)
+    {
+        $ordershop = DB::table('order_shop')
+                    ->where('order_shop.id',$id)
+                    ->join('users','users.id','=','order_shop.user_id')
+                    ->select('order_shop.*', 'users.name','users.address')
+                    ->get();
+        return view('admin.editOrdershop',['order_shop'=>$ordershop]);
+
+    }
+    public function updateOrdershop(Request $request)
+    {
+        Ordershop::where('id',$request->id)->update([
+            'status'=> $request->status,
+        ]);
+        return redirect()->to('home/admin');
+    }
+
+    public function deleteOrdershop($id)
+    {
+    DB::table('order_shop')->where('id',$id)->delete();
     return redirect('/home/admin');
     }
 }

@@ -1,31 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container my-3">
-    <div class="container card border-dark">
+    <div class="container card">
         <form class="d-flex m-5" role="search">
             <input class="form-control me-2" type="search" placeholder="What are you looking for..." aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <div class="mx-5 mb-5">
-            @foreach($shops as $shop)
-            <div class="card-group shop_data">
+            <div class="card-group">
+                @foreach($shops as $shop)
                 <div class="card">
-                <img src="/images/product/{{ $shop->image }}" width="20%">
+                    <img src="/images/product/{{ $shop->image }}" class="card-img-top w-50 align-self-center">
                     <div class="card-body">
-                        <h5 class="card-title">{{$shop->name}}</h5>
-                        <h5 class="card-title">Harga: {{$shop->price}}</h5>
+                        <h3 class="card-title">{{$shop->name}}</h3>
+                        <h5 class="card-text">Harga : {{$shop->price}}</h5>
                     </div>
                     <div class="card-footer">
-                        <div class="btn-group col-4" role="group" aria-label="Basic example">
+                        <div class="btn-group" role="group" aria-label="Basic example">
                             @if ($shop->stock > 0)
-                            <form action="/addToCart/{{$shop->id}}" method="post">
+                            <form action="/addToCart/{{$shop->id}}" method="post" class="input-group">
                                 @csrf
-                                <button class="input-group-text decrement-btn">-</button>
-                                <input class="form-control col-sm-5 input-qty" type="text" name="quantity" value="1">
-                                <button class="input-group-text increment-btn">+</button>
-                                <button class="btn btn-secondary float-end addToCartBtn" type="submit">Add to Cart</button>
+                                <nav aria-label="nav store">
+                                    <ul class="pagination">
+                                        <li class="page-item"><button type="button" class="btn btn-primary decrement-btn">-</button></li>
+                                        <li class="page-item" style="width: 50px"><input type="text" class="form-control input-qty text-center" name="quantity" value="1"></li>
+                                        <li class="page-item"><button type="button" class="btn btn-primary increment-btn">+</button></li>
+                                        <li class="page-item"><button class="btn btn-outline-secondary addToCartBtn" type="submit">Add to Cart</button></li>
+                                    </ul>
+                                </nav>
                             </form>
                             @else
                             <label for="out">Out of stock</label>
@@ -33,10 +36,10 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
-            <div class="text-center mt-2">
-                <button class="btn btn-dark"><a href="check-out">Check My Shopping Cart</a></button>
+            <div class="text-center mt-4">
+                <button class="btn btn-success"><a href="check-out">Check My Shopping Cart</a></button>
             </div>
         </div>
     </div>

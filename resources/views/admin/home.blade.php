@@ -96,7 +96,7 @@
                                     <tr>
                                         <td>{{$treatments->id}}</td>
                                         <td>{{$treatments->name}}</td>
-                                        <td>{{$treatments->price}}</td>
+                                        <td>Rp{{$treatments->price}},00</td>
                                         <td>{{$treatments->duration}}</td>
                                         <td style="width: 100px;">
                                             <a href="/home/admin/editTreatments/{{$treatments->id}}" class="btn btn-success">
@@ -142,7 +142,7 @@
                                     <tr>
                                         <td>{{$o->id}}</td>
                                         <td>{{$o->berat}}</td>
-                                        <td>{{$o->total}}</td>
+                                        <td>Rp{{$o->total}},00</td>
                                         <td>{{$o->deskripsi}}</td>
                                         <td>{{$o->t_name}}</td>
                                         <td>{{$o->u_name}}</td>
@@ -187,7 +187,7 @@
                                         <td>{{$shop->id}}</td>
                                         <td>{{$shop->name}}</td>
                                         <td>{{$shop->stock}}</td>
-                                        <td>{{$shop->price}}</td>
+                                        <td>Rp{{$shop->price}},00</td>
                                         <td><img src="/images/product/{{ $shop->image }}" width="100px"></td>
                                         <td>{{$shop->description}}</td>
                                         <td>
@@ -227,22 +227,21 @@
                                         <th style="width: 50px;">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                <!-- foreach -->
-                                    <tr>
-                                        <td>id order</td>
-                                        <td>nama pembeli</td>
-                                        <td>nama barang</td>
-                                        <td>jumlah</td>
-                                        <td>total</td>
-                                        <td>
-                                            <a href="/" class="btn btn-success">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <!-- endforeach -->
-                                </tbody>
+                                    <tbody>
+                                    @foreach($ordershop as $os)
+                                        <tr>
+                                            <th>{{$os->id}}</th>
+                                            <th>{{$os->name}}</th>
+                                            <th>{{$os->name}}</th>
+                                            <td>jumlah</td>
+                                            <th>Rp {{number_format($os->total)}}</th>
+                                            <td>
+                                                <a href="/" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    <!-- endforeach -->
+                                    </tbody>
                             </table>
                         </div>
                     </div>
