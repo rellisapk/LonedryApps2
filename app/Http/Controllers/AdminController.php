@@ -140,18 +140,16 @@ class AdminController extends Controller
             'description' => 'required',
         ]);
 
-        if ($image = $request->file('image')) {
-            $destinationPath = 'images/product';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = $profileImage;
+        if ($request->hasfile('image')) {
+            $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('image')->getClientOriginalName());
+            $request->file('image')->move(public_path('images'), $filename);
         }
 
         Shop::create([
             'name' => $request->name,
             'stock' => $request->stock,
             'price' => $request->price,
-            'image' => $profileImage,
+            'image' => $filename,
             'description' => $request->description,
         ]);
         // dd($shop);
@@ -169,32 +167,43 @@ class AdminController extends Controller
     public function updateShop(Request $request)
     {
 
-        if ($image = $request->file('image')) {
-            $destinationPath = 'images/product';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
-            Shop::update([
-                'name' => $request->name,
-                'stock' => $request->stock,
-                'price' => $request->price,
-                'image' => $profileImage,
-                'description' => $request->description,
+        $shop = Shop::findOrFail($request->id);
+
+        // $request->validate([
+        //     'name' => 'required',
+        //     'stock' => 'required',
+        //     'price' => 'required',
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //     'description' => 'required',
+        // ]);
+
+
+        if ($request->hasfile('image')) {
+            $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('image')->getClientOriginalName());
+            $request->file('image')->move(public_path('images'), $filename);
+        }
+
+        if($request->hasfile('image')){
+            Shop::where('id',$request->id)->update([
+                'name'=> $request->name,
+                    'stock' => $request->stock,
+                    'price' => $request->price,
+                    'image' =>$filename,
+                    'description' => $request->description,
             ]);
         }else{
-            unset($input['image']);
-            Shop::update([
-                'name' => $request->name,
-                'stock' => $request->stock,
-                'price' => $request->price,
-                'description' => $request->description,
+            Shop::where('id',$request->id)->update([
+                'name'=> $request->name,
+                    'stock' => $request->stock,
+                    'price' => $request->price,
+                    'description' => $request->description,
             ]);
         }
-        return redirect()->to('/home/admin')
-                        ->with('success','Product created successfully.');
+        return redirect()->to('/home/admin');
+
     }
 
-    
+
     public function deleteShop($id)
     {
     DB::table('shop')->where('id',$id)->delete();

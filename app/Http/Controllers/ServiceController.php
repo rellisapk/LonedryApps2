@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Shop;
-use App\Models\Treatments;
 
 use Illuminate\Http\Request;
 

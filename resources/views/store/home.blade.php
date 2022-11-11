@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('content')
+<div class="container">
+    <div class="card">
 
 @section('content')
 <div class="container my-3">
@@ -11,7 +14,7 @@
             <div class="card-group">
                 @foreach($shops as $shop)
                 <div class="card">
-                    <img src="/images/product/{{ $shop->image }}" class="card-img-top w-50 align-self-center">
+                <img src="/images/{{ $shop->image }}" width="20%">
                     <div class="card-body">
                         <h3 class="card-title">{{$shop->name}}</h3>
                         <h5 class="card-text">Harga : {{$shop->price}}</h5>
@@ -38,8 +41,13 @@
                 </div>
                 @endforeach
             </div>
-            <div class="text-center mt-4">
-                <button class="btn btn-success"><a href="check-out">Check My Shopping Cart</a></button>
+        </div>
+    </div>
+</div>
+
+            @endforeach
+            <div class="text-center mt-2">
+                <button class="btn btn-dark"><a href="check-out">Check My Shopping Cart</a></button>
             </div>
         </div>
     </div>

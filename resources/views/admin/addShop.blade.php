@@ -22,13 +22,13 @@
         </div>
 
         <div class="form-group">
-          <label for="image">Image</label>
-          <input type="file" name="image" value="" class="form-control">
+          <label for="description">Deskripsi Produk</label>
+          <input type="text" name="description" value="" class="form-control">
         </div>
 
         <div class="form-group">
-          <label for="description">Deskripsi Produk</label>
-          <input type="text" name="description" value="" class="form-control">
+          <label for="image">Foto Produk</label>
+          <input type="file" name="image" value="" class="form-control" placeholder="foto">
         </div>
 
         <div class="row">

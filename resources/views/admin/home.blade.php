@@ -184,20 +184,13 @@
                                 <tbody>
                                 @foreach($shop as $shop)
                                     <tr>
-                                        <td>{{$shop->id}}</td>
-                                        <td>{{$shop->name}}</td>
-                                        <td>{{$shop->stock}}</td>
-                                        <td>Rp{{$shop->price}},00</td>
-                                        <td><img src="/images/product/{{ $shop->image }}" width="100px"></td>
-                                        <td>{{$shop->description}}</td>
-                                        <td>
-                                            <a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
+                                        <th>{{$shop->id}}</th>
+                                        <th>{{$shop->name}}</th>
+                                        <th>{{$shop->stock}}</th>
+                                        <th>{{$shop->price}}</th>
+                                        <th><img src="/images/{{$shop->image}}" alt="" width="150px" height="150px"></th>
+                                        <th>{{$shop->description}}</th>
+                                        <th><a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">Delete</a></th>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -246,7 +239,46 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Tabel Order Store
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                        <div class="accordion-body text-center">
+                            <table class="table table-bordered table-primary table-hover text-center">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>ID Order</th>
+                                        <th>Nama</th>
+                                        <th>Alamat</th>
+                                        <th>Total</th>
+                                        <th>Tanggal Pemesanan</th>
+                                        <th>Bukti</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($ordershop as $os)
+                                <tr>
+                                    <th>{{$os->id}}</th>
+                                    <th>{{$os->name}}</th>
+                                    <th>{{$os->address}}</th>
+                                    <th>Rp {{number_format($os->total)}}</th>
+                                    <th>{{$os->created_at}}</th>
+                                    <th><img src="/images/{{$os->bukti}}" alt="" width="150px" height="150px"></th>
+                                    <th>{{$os->status}}</th>
+                                    <th><a href="/home/admin/editOrdershop/{{$os->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteOrdershop/{{$os->id}}" class="btn btn-danger">Delete</a></th>
+                                </tr>
+                                @endforeach
+                                    <!-- Masukin syntax sql disini -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

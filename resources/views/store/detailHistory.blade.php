@@ -41,6 +41,7 @@
 
                             </tr>
                             @endforeach
+                            
 
                             <tr>
                                 <td colspan="5" align="right"><strong>Total Harga :</strong></td>
@@ -53,7 +54,41 @@
 
                             </tr>
                         </tbody>
-                    </table>
+                        </table>
+                        @foreach($bukti as $b)
+                        <div>
+                            Bukti pembayaran : <br>
+                        <img src="/images/{{$b->bukti}}" width="50%" height="50%" alt="Bukti">
+                        </div>
+                        @endforeach
+                        <!-- if bukti = empty, munculin form upload -->
+                        @if($bukti->isEmpty())
+                            <form action="/storeBuktistore" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="id_detail" value="{{$id}}">
+                                <input type="hidden" name="total" value="{{$cart->jumlah_harga}}">
+                            <div class="form-group">
+                                <label for="image">Bukti Pembayaran</label>
+                                <input type="file" name="image" value="" class="form-control" placeholder="foto">
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                <input type="submit" value="Submit" class="btn btn-secondary ">
+                            </div>
+                        @else
+                        <form action="/updateBuktistore" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                {{ method_field('PUT') }}
+                                <input type="hidden" name="id_detail" value="{{$id}}">
+                            <div class="form-group">
+                                <label for="image">Edit Bukti Pembayaran</label>
+                                <input type="file" name="image" value="" class="form-control" placeholder="foto">
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                <input type="submit" value="Submit" class="btn btn-secondary ">
+                            </div>
+                        @endif
                     @endif
 
                 </div>
