@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Orders;
 use App\Models\Treatments;
 use App\Models\Shop;
+use App\Models\Feedback;
 use App\Models\Ordershop;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -47,7 +48,8 @@ class AdminController extends Controller
                     ->join('users','users.id','=','order_shop.user_id')
                     ->select('order_shop.*', 'users.name as name', 'users.address as address')
                     ->get();
-        return view('admin.home', ['user' => $user,'orders'=>$orders,'treatments'=>$treatments,'shop'=>$shop, 'ordershop'=>$ordershop]);
+        $feedbacks = Feedback::all();
+        return view('admin.home', ['user' => $user,'orders'=>$orders,'treatments'=>$treatments,'shop'=>$shop, 'ordershop'=>$ordershop, 'feedbacks'=>$feedbacks]);
     }
 
     public function addUsers()
@@ -260,6 +262,12 @@ class AdminController extends Controller
     public function deleteOrdershop($id)
     {
     DB::table('order_shop')->where('id',$id)->delete();
+    return redirect('/home/admin');
+    }
+
+    public function deleteFeedback($id)
+    {
+    DB::table('feedback')->where('id',$id)->delete();
     return redirect('/home/admin');
     }
 }

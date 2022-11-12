@@ -203,11 +203,11 @@
                 <!-- TABEL E-COMMERCE ORDER -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                             Tabel E-Commerce Order
                         </button>
                     </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                         <div class="accordion-body text-center">
                             <table class="table table-bordered table-hover text-center">
                                 <thead class="table-warning">
@@ -239,13 +239,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFive">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                             Tabel Order Store
                         </button>
                     </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
                         <div class="accordion-body text-center">
                             <table class="table table-bordered table-primary table-hover text-center">
                                 <thead class="table-primary">
@@ -271,6 +272,42 @@
                                     <th><img src="/images/{{$os->bukti}}" alt="" width="150px" height="150px"></th>
                                     <th>{{$os->status}}</th>
                                     <th><a href="/home/admin/editOrdershop/{{$os->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteOrdershop/{{$os->id}}" class="btn btn-danger">Delete</a></th>
+                                </tr>
+                                @endforeach
+                                    <!-- Masukin syntax sql disini -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            Tabel Feedback
+                        </button>
+                    </h2>
+                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                        <div class="accordion-body text-center">
+                            <table class="table table-bordered table-primary table-hover text-center">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th>ID Feedback</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Subject</th>
+                                        <th>Feedback</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($feedbacks as $feedback)
+                                <tr>
+                                    <th>{{$feedback->id}}</th>
+                                    <th>{{$feedback->name}}</th>
+                                    <th>{{$feedback->email}}</th>
+                                    <th>{{$feedback->subject}}</th>
+                                    <th>{{$feedback->message}}</th>
+                                    <th> <a href="/home/admin/deleteFeedback/{{$feedback->id}}" class="btn btn-danger">Delete</a></th>
                                 </tr>
                                 @endforeach
                                     <!-- Masukin syntax sql disini -->

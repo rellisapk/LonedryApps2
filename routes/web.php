@@ -32,6 +32,7 @@ Route::put('/updateBuktistore', [App\Http\Controllers\HistoryController::class, 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about']);
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact']);
+Route::post('/feedback', [App\Http\Controllers\FeedbackController::class, 'storeFeedback'])->name('store.feedback');
 Route::get('/services', [App\Http\Controllers\ServiceController::class, 'services'])->name('services');
 Route::get('/store', [App\Http\Controllers\ServiceController::class, 'store'])->name('store');
 Route::get('/store/pesan', [App\Http\Controllers\ServiceController::class, 'pesan'])->name('pesan');
@@ -61,6 +62,8 @@ Route::put('/home/admin/updateTreatments', [App\Http\Controllers\AdminController
 Route::get('/home/admin/deleteTreatments/{id}', [App\Http\Controllers\AdminController::class, 'deleteTreatments'])->middleware('isAdmin');
 Route::get('/order/{user}', [App\Http\Controllers\OrderController::class, 'index'])->name('order');
 Route::get('/riwayat/{user}', [App\Http\Controllers\OrderController::class, 'riwayat'])->name('riwayat');
+
+Route::get('/home/admin/deleteFeedback/{id}', [App\Http\Controllers\AdminController::class, 'deleteFeedback'])->middleware('isAdmin');
 
 Route::get('/home/admin/editOrdershop/{id}', [App\Http\Controllers\AdminController::class, 'editOrdershop'])->middleware('isAdmin');
 Route::put('/home/admin/updateOrdershop', [App\Http\Controllers\AdminController::class, 'updateOrdershop'])->middleware('isAdmin');
