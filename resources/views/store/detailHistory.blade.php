@@ -32,7 +32,7 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>
-                                    <img src="{{ url('uploads') }}/{{ $order_detail->shop->image }}" width="100" alt="...">
+                                    <img src="/images/product/{{ $order_detail->shop->image }}" width="20%" alt="...">
                                 </td>
                                 <td>{{ $order_detail->shop->name }}</td>
                                 <td>{{ $order_detail->jumlah }}</td>
@@ -58,7 +58,7 @@
                         @foreach($bukti as $b)
                         <div>
                             Bukti pembayaran : <br>
-                        <img src="/images/{{$b->bukti}}" width="50%" height="50%" alt="Bukti">
+                        <img src="/images/bukti_pembayaran/{{$b->bukti}}" width="50%" height="50%" alt="Bukti">
                         </div>
                         @endforeach
                         <!-- if bukti = empty, munculin form upload -->

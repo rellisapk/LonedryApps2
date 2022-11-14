@@ -188,7 +188,7 @@
                                         <th>{{$shop->name}}</th>
                                         <th>{{$shop->stock}}</th>
                                         <th>{{$shop->price}}</th>
-                                        <th><img src="/images/{{$shop->image}}" alt="" width="150px" height="150px"></th>
+                                        <th><img src="/images/product/{{$shop->image}}" alt="" width="150px" height="150px"></th>
                                         <th>{{$shop->description}}</th>
                                         <th><a href="/home/admin/editShop/{{$shop->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteShop/{{$shop->id}}" class="btn btn-danger">Delete</a></th>
                                     </tr>
@@ -200,46 +200,7 @@
                     </div>
                 </div>
 
-                <!-- TABEL E-COMMERCE ORDER -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            Tabel E-Commerce Order
-                        </button>
-                    </h2>
-                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                        <div class="accordion-body text-center">
-                            <table class="table table-bordered table-hover text-center">
-                                <thead class="table-warning">
-                                    <tr>
-                                        <th>ID Order</th>
-                                        <th>Nama</th>
-                                        <th>Nama Barang</th>
-                                        <th>Jumlah</th>
-                                        <th>Total</th>
-                                        <th style="width: 50px;">Action</th>
-                                    </tr>
-                                </thead>
-                                    <tbody>
-                                    @foreach($ordershop as $os)
-                                        <tr>
-                                            <th>{{$os->id}}</th>
-                                            <th>{{$os->name}}</th>
-                                            <th>{{$os->name}}</th>
-                                            <td>jumlah</td>
-                                            <th>Rp {{number_format($os->total)}}</th>
-                                            <td>
-                                                <a href="/" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    <!-- endforeach -->
-                                    </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
@@ -269,7 +230,7 @@
                                     <th>{{$os->address}}</th>
                                     <th>Rp {{number_format($os->total)}}</th>
                                     <th>{{$os->created_at}}</th>
-                                    <th><img src="/images/{{$os->bukti}}" alt="" width="150px" height="150px"></th>
+                                    <th><img src="/images/bukti_pembayaran/{{$os->bukti}}" alt="" width="150px" height="150px"></th>
                                     <th>{{$os->status}}</th>
                                     <th><a href="/home/admin/editOrdershop/{{$os->id}}" class="btn btn-success">Edit</a> | <a href="/home/admin/deleteOrdershop/{{$os->id}}" class="btn btn-danger">Delete</a></th>
                                 </tr>

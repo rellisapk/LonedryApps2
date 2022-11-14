@@ -20,8 +20,8 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-6 not-selected" ><a href="/profile/edit/{{Auth::user()->id}}"><b>Biodata Diri</b></a></div>
-                                <div class="col-6"><b>Riwayat Pesanan</b></div>
-                                <div class="col-6 not-selected"><a href="/riwayatShop/{{Auth::user()->id}}"><b>Riwayat Belanja</b></a></div>
+                                <div class="col-6 not-selected"><a href="/riwayat/{{Auth::user()->id}}"><b>Riwayat Pesanan</b></a></div>
+                                <div class="col-6"><b>Riwayat Belanja</b></div>
                             </div>
                         </div>
 
@@ -31,26 +31,20 @@
                                     <tr>
                                         <th>No</th>
                                         <!-- <th>ID Order</th> -->
-                                        <th>Tanggal Order</th>
-                                        <th>Berat</th>
-                                        <th>Total Harga</th>
-                                        <th>Deskripsi</th>
-                                        <th>Jenis Treatment</th>
+                                        <th>Tanggal Pemesanan</th>
+                                        <th>Total</th>
+                                        <th>Bukti</th>
                                         <th>Status</th>
-                                        <th>Invoice</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($orders as $o)
+                                    @foreach($ordershop as $os)
                                     <tr>
                                         <th>{{$loop->iteration}}</th>
-                                        <th>{{$o->created_at}}</th>
-                                        <th>{{$o->berat}}</th>
-                                        <th>{{$o->total}}</th>
-                                        <th>{{$o->deskripsi}}</th>
-                                        <th>{{$o->t_name}}</th>
-                                        <th>{{$o->status}}</th>
-                                        <th><a href="/riwayat/nota/{{Auth::user()->id}}/{{$o->id}}" class="btn btn-success">View</a></th>
+                                        <th>{{$os->created_at}}</th>
+                                        <th>Rp {{number_format($os->total)}}</th>
+                                        <th><img src="/images/bukti_pembayaran/{{$os->bukti}}" alt="" width="150px" height="150px"></th>
+                                        <th>{{$os->status}}</th>
                                     </tr>
                                     @endforeach
                                     <!-- Masukin syntax sql disini -->

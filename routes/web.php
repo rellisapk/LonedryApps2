@@ -62,6 +62,7 @@ Route::put('/home/admin/updateTreatments', [App\Http\Controllers\AdminController
 Route::get('/home/admin/deleteTreatments/{id}', [App\Http\Controllers\AdminController::class, 'deleteTreatments'])->middleware('isAdmin');
 Route::get('/order/{user}', [App\Http\Controllers\OrderController::class, 'index'])->name('order');
 Route::get('/riwayat/{user}', [App\Http\Controllers\OrderController::class, 'riwayat'])->name('riwayat');
+Route::get('/riwayatShop/{user}', [App\Http\Controllers\StoreController::class, 'riwayatShop'])->name('riwayatShop');
 
 Route::get('/home/admin/deleteFeedback/{id}', [App\Http\Controllers\AdminController::class, 'deleteFeedback'])->middleware('isAdmin');
 

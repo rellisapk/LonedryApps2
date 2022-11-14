@@ -25,7 +25,7 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>
-                            <img src="{{ url('uploads') }}/{{ $order_detail->shop->image }}" width="100" alt="...">
+                            <img src="images/product/{{ $order_detail->shop->image }}" width="100" alt="...">
                         </td>
                         <td>{{ $order_detail->shop->name }}</td>
                         <td>{{ $order_detail->jumlah }}</td>

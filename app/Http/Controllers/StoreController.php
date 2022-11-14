@@ -162,5 +162,16 @@ class StoreController extends Controller
 
     }
 
+    public function riwayatShop($id)
+    {
+        $ordershop = DB::table('order_shop')
+                    ->join('users','users.id','=','order_shop.user_id')
+                    ->select('order_shop.*', 'users.name','users.address')
+                    ->where('order_shop.user_id', $id)
+                    ->get();
+        return view('store.riwayatShop',['ordershop'=>$ordershop]);
+
+    }
+
 
 }
