@@ -48,24 +48,12 @@
             @endforeach
         </div>
     </div>
-    
+    <div class="text-center mt-5">
+        <button class="btn btn-dark"><a href="check-out">Check My Shopping Cart</a></button>
+    </div>
 </div>
 
-<div class="container my-5">
-    <div class="card">
-        <div class="mx-5 mb-5">
-            <div class="card-group">
-                
-            </div>
-        </div>
-    </div>
-</div>
-            <div class="text-center mt-2" style="margin-bottom: 10px;">
-                <button class="btn btn-dark"><a href="check-out">Check My Shopping Cart</a></button>
-            </div>
-        </div>
-    </div>
-</div>
+            
 @endsection
 
 @section('scripts')
