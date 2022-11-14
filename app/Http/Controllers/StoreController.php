@@ -173,5 +173,15 @@ class StoreController extends Controller
 
     }
 
+    public function belumBayar($id)
+    {
+        $cart = DB::table('cart')
+                    ->where('cart.user_id', $id)
+                    ->where('cart.status',1)
+                    ->get();
+        return view('store.belumBayar',['cart'=>$cart]);
+
+    }
+
 
 }

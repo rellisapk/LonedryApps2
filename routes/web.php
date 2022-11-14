@@ -63,6 +63,7 @@ Route::get('/home/admin/deleteTreatments/{id}', [App\Http\Controllers\AdminContr
 Route::get('/order/{user}', [App\Http\Controllers\OrderController::class, 'index'])->name('order');
 Route::get('/riwayat/{user}', [App\Http\Controllers\OrderController::class, 'riwayat'])->name('riwayat');
 Route::get('/riwayatShop/{user}', [App\Http\Controllers\StoreController::class, 'riwayatShop'])->name('riwayatShop');
+Route::get('/belumBayar/{user}', [App\Http\Controllers\StoreController::class, 'belumBayar'])->name('belumBayar');
 
 Route::get('/home/admin/deleteFeedback/{id}', [App\Http\Controllers\AdminController::class, 'deleteFeedback'])->middleware('isAdmin');
 

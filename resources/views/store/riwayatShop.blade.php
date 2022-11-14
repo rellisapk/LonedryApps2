@@ -22,6 +22,7 @@
                                 <div class="col-6 not-selected" ><a href="/profile/edit/{{Auth::user()->id}}"><b>Biodata Diri</b></a></div>
                                 <div class="col-6 not-selected"><a href="/riwayat/{{Auth::user()->id}}"><b>Riwayat Pesanan</b></a></div>
                                 <div class="col-6"><b>Riwayat Belanja</b></div>
+                                <div class="col-6 not-selected"><a href="/belumBayar/{{Auth::user()->id}}"><b>Belum Dibayar</b></a></div>
                             </div>
                         </div>
 

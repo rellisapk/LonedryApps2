@@ -23,6 +23,7 @@
                                 <div class="col-6"><b>Biodata Diri</b></div>
                                 <div class="col-6 not-selected"><a href="/riwayat/{{Auth::user()->id}}"><b>Riwayat Pesanan</b></a></div>
                                 <div class="col-6 not-selected"><a href="/riwayatShop/{{Auth::user()->id}}"><b>Riwayat Belanja</b></a></div>
+                                <div class="col-6 not-selected"><a href="/belumBayar/{{Auth::user()->id}}"><b>Belum Dibayar</b></a></div>
                             </div>
                         </div>
 

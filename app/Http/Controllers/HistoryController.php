@@ -52,6 +52,10 @@ class HistoryController extends Controller
             'total' => $request->total,
         ]);
 
+        Cart::where('id',$request->id_detail)->update([
+            'status' => 2,
+        ]);
+
         return redirect()->back();
     }
 
