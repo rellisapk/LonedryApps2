@@ -1,25 +1,30 @@
 @extends('layouts.app')
-@section('content')
-<div class="container">
-    <div class="card">
+
+@section('css')
+.card img {
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+@endsection
 
 @section('content')
-<div class="container my-3">
-    <div class="container card">
-        <form class="d-flex m-5" role="search" action="/store/search" method="GET">
+<div class="container my-5">
+    <div class="card">
+        <form class="d-flex mt-5 mx-5" role="search" action="/store/search" method="GET">
             <input name="search" class="form-control me-2" type="search" placeholder="What are you looking for..." aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-        <div class="mx-5 mb-5">
-            <div class="card-group">
-                @foreach($shops as $shop)
+        <div class="row p-5">
+            @foreach($shops as $shop)
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 py-3">
                 <div class="card">
-                <img src="/images/product/{{ $shop->image }}" width="20%">
+                    <img src="/images/product/ {{ $shop->image }}" width="100%">
                     <div class="card-body">
                         <h3 class="card-title">{{$shop->name}}</h3>
-                        <h5 class="card-text">Harga : {{$shop->price}}</h5>
+                        <h5 class="card-text">Harga: {{$shop->price}}</h5>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer d-flex justify-content-center">
                         <div class="btn-group" role="group" aria-label="Basic example">
                             @if ($shop->stock > 0)
                             <form action="/addToCart/{{$shop->id}}" method="post" class="input-group">
@@ -39,18 +44,18 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
+            @endforeach
         </div>
     </div>
-</div>
-            <div class="text-center mt-2" style="margin-bottom: 10px;">
-                <button class="btn btn-dark"><a href="check-out">Check My Shopping Cart</a></button>
-            </div>
-        </div>
+    <div class="text-center mt-5">
+        <button class="btn btn-dark"><a href="check-out">Check My Shopping Cart</a></button>
     </div>
 </div>
+
+
 @endsection
+
 @section('scripts')
 <script>
     $(document).ready(function (e){
