@@ -19,7 +19,7 @@
             @foreach($shops as $shop)
             <div class="col-12 col-md-6 col-lg-4 col-xl-3 py-3">
                 <div class="card">
-                    <img src="/images/product/ {{ $shop->image }}" width="100%">
+                    <img src="images/product/{{ $shop->image }}" width="100%">
                     <div class="card-body">
                         <h3 class="card-title">{{$shop->name}}</h3>
                         <h5 class="card-text">Harga: {{$shop->price}}</h5>
