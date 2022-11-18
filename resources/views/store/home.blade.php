@@ -60,32 +60,6 @@
 <script>
     $(document).ready(function (e){
 
-        // $('.addToCartBtn').click(function (e){
-        //     e.preventDefault();
-
-        //     var shop_id = $(this).closest('.shop_data').find('.shop_id').val();
-        //     var shop_qty = $(this).closest('.shop_data').find('.input-qty').val();
-
-        //     $.ajaxSetup({
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //         }
-        //     });
-
-        //     $.ajax({
-        //         method: "POST",
-        //         url: "/add-to-cart",
-        //         data: {
-        //             'shop_id': shop_id,
-        //             'quantity': shop_qty,
-        //         },
-        //         alert(data);
-        //         success: function (response){
-        //             alert(response.status);
-        //         }
-        //     });
-        // });
-
         $('.increment-btn').click(function (e){
             e.preventDefault();
             var inc_value = $('.input-qty').val();
