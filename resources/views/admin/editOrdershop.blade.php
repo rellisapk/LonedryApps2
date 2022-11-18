@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <label for="bukti">Bukti Pembayaran</label><br>
-            <img src="/images/{{$os->bukti}}" alt="" width="150px" height="150px">
+            <img src="/images/bukti_pembayaran/{{$os->bukti}}" alt="" width="150px" height="150px">
         </div>
 
         <div class="form-group">
