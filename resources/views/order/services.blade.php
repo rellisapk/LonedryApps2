@@ -28,7 +28,7 @@
 				</div>
 				@endif
 				@endforeach
-                <a href="/order/{user}" class="btn btn-primary">Go somewhere</a>
+                <a href="/order/{user}" class="btn btn-primary">Pesan Sekarang</a>
 			</div>
 		</div>
 	</div>

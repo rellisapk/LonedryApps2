@@ -49,7 +49,7 @@
         <div class="row">
           <div class="col-12">
             <button type="submit" class="btn btn-success">Pesan Laundry</button>
-            <input type="submit" value="Cancel" class="btn btn-secondary ">
+            <button class="btn btn-secondary"><a href="{{ url('services') }}">Cancel</a></button>
           </div>
         </div>
       </form>
